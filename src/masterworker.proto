@@ -1,3 +1,52 @@
 syntax = "proto3";
 
 package masterworker;
+
+
+service master {
+  //worker requests a job using this (passes its own info to the master)
+	rpc getJob (workerInfo) returns (workerJob) {}
+}
+
+    //utility for master to query its workers
+service worker{
+    //get health of worker "heartbeating"
+    rpc getHealth(dummy) returns (workerStatus){}
+    //get results from a job that was assigned to the worker
+    rpc getResults(dummy) returns (jobResult){}
+}
+
+message dummy{
+}
+
+//message that defines a job
+message workerJob {
+    repeated string reduceFilesList=1;//list of reduce files for reducer job
+	string mapFilePath=2;//singular map file input path for mapper job
+    int32 startIdxMapper=3;//start idx for mapper job
+    int32 endIdxMapper=4; //end idx for mapper job
+    enum jobTypeEnum {
+        MAPPER=0;
+        REDUCER=1;
+    }
+    jobTypeEnum jobType=5;//define if the job is a mapper or reducer
+    string userID =6;//user id for job
+    int32 jobID=7; //unique job id assigned to the specific task for the specific worker
+}
+
+//message that defines a worker's basic info
+message workerInfo{
+    string workerip=1;
+}
+
+//message with worker health
+message workerStatus{
+    bool isHealthy=1;
+    bool isDone=2;
+}
+
+//message to retrieve the output file path of the mapper/reducer
+message jobResult{
+    string outputPath=1;
+    int32 jobID=2;
+}
