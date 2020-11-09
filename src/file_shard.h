@@ -2,12 +2,14 @@
 
 #include <vector>
 #include "mapreduce_spec.h"
-
+#include <string>
 
 /* CS6210_TASK: Create your own data structure here, where you can hold information about file splits,
      that your master would use for its own bookkeeping and to convey the tasks to the workers for mapping */
 struct FileShard {
-
+    string filename;
+    int startIdx;
+    int endIdx;
 };
 
 
