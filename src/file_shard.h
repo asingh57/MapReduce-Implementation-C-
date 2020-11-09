@@ -31,7 +31,7 @@ inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fi
                 fileShards.push_back(aShard);
                 break;
             }
-            aShard.endIdx=currIdx+file_size-1;
+            aShard.endIdx=currIdx+mr_spec.mapSizeBytes-1;
             fileShards.push_back(aShard);
             
             currIdx+=mr_spec.mapSizeBytes;
@@ -40,6 +40,10 @@ inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fi
 
     }
     cout <<"num shards"<<fileShards.size() <<endl;
+    /*for(auto & sd: fileShards){
+        cout << sd.filename << " " << sd.startIdx << " " <<sd.endIdx << endl;
+    }*/
+
 
 	return true;
 }
