@@ -17,11 +17,11 @@ struct MapReduceSpec {
     std::vector<std::string> inputFiles;
     string outputDir;
     int numOutputFiles;
-    int mapSizeKB;
+    unsigned long mapSizeBytes;
     string userID;
     //init function
     MapReduceSpec():workerIPaddresses(),inputFiles(),numWorkers(0),
-outputDir(""),numOutputFiles(0),mapSizeKB(0),userID(""){}
+outputDir(""),numOutputFiles(0),mapSizeBytes(0),userID(""){}
 };
 
 
@@ -98,8 +98,8 @@ inline bool read_mr_spec_from_config_file(const std::string& config_filename, Ma
         }
         else if (paramName.compare("map_kilobytes") == 0){
 
-            mr_spec.mapSizeKB=std::stoi(paramStr);
-            cout << "mapSizeKB" << mr_spec.mapSizeKB << endl;
+            mr_spec.mapSizeBytes=std::stoul(paramStr)*1024;
+            cout << "mapSizeBytes" << mr_spec.mapSizeBytes << endl;
         }
         else if (paramName.compare("user_id") == 0){
 
@@ -116,10 +116,15 @@ inline bool read_mr_spec_from_config_file(const std::string& config_filename, Ma
 
 /* CS6210_TASK: validate the specification read from the config file */
 inline bool validate_mr_spec(const MapReduceSpec& mr_spec) {
-    if(mr_spec.numWorkers<=0 || mr_spec.workerIPaddresses.size()==0 || mr_spec.inputFiles.size()==0 || mr_spec.outputDir.size()==0 || mr_spec.numOutputFiles<=0 || mr_spec.mapSizeKB<=0 || mr_spec.userID.size()==0){
+    if(mr_spec.numWorkers<=0 || mr_spec.workerIPaddresses.size()==0 || mr_spec.inputFiles.size()==0 || mr_spec.outputDir.size()==0 || mr_spec.numOutputFiles<=0 || mr_spec.mapSizeBytes<=0 || mr_spec.userID.size()==0){
 
         
         cout << "one param is size zero" << endl;
+        return false;
+    }
+
+    if(mr_spec.workerIPaddresses.size()!=mr_spec.numWorkers){
+        cout << "ip address count does not match num workers" <<endl;
         return false;
     }
 

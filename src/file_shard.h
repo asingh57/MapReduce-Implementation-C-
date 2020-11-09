@@ -15,5 +15,31 @@ struct FileShard {
 
 /* CS6210_TASK: Create fileshards from the list of input files, map_kilobytes etc. using mr_spec you populated  */ 
 inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fileShards) {
+    fileShards=std::vector<FileShard>();
+    for(auto& filename: mr_spec.inputFiles){
+       ifstream in_file(filename, ios::binary);
+       in_file.seekg(0, ios::end);
+       long file_size = in_file.tellg();
+       int currIdx=0;
+       while(file_size){
+            FileShard aShard;
+            aShard.filename=filename;
+            aShard.startIdx=currIdx;
+            
+            if(mr_spec.mapSizeBytes>file_size){
+                aShard.endIdx=currIdx+file_size-1;
+                fileShards.push_back(aShard);
+                break;
+            }
+            aShard.endIdx=currIdx+file_size-1;
+            fileShards.push_back(aShard);
+            
+            currIdx+=mr_spec.mapSizeBytes;
+            file_size-=mr_spec.mapSizeBytes;
+        }
+
+    }
+    cout <<"num shards"<<fileShards.size() <<endl;
+
 	return true;
 }
