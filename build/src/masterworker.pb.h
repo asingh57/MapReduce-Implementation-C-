@@ -56,12 +56,12 @@ struct TableStruct_masterworker_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_masterworker_2eproto;
 namespace masterworker {
-class dummy;
-class dummyDefaultTypeInternal;
-extern dummyDefaultTypeInternal _dummy_default_instance_;
 class jobResult;
 class jobResultDefaultTypeInternal;
 extern jobResultDefaultTypeInternal _jobResult_default_instance_;
+class masterInfo;
+class masterInfoDefaultTypeInternal;
+extern masterInfoDefaultTypeInternal _masterInfo_default_instance_;
 class workerInfo;
 class workerInfoDefaultTypeInternal;
 extern workerInfoDefaultTypeInternal _workerInfo_default_instance_;
@@ -73,8 +73,8 @@ class workerStatusDefaultTypeInternal;
 extern workerStatusDefaultTypeInternal _workerStatus_default_instance_;
 }  // namespace masterworker
 PROTOBUF_NAMESPACE_OPEN
-template<> ::masterworker::dummy* Arena::CreateMaybeMessage<::masterworker::dummy>(Arena*);
 template<> ::masterworker::jobResult* Arena::CreateMaybeMessage<::masterworker::jobResult>(Arena*);
+template<> ::masterworker::masterInfo* Arena::CreateMaybeMessage<::masterworker::masterInfo>(Arena*);
 template<> ::masterworker::workerInfo* Arena::CreateMaybeMessage<::masterworker::workerInfo>(Arena*);
 template<> ::masterworker::workerJob* Arena::CreateMaybeMessage<::masterworker::workerJob>(Arena*);
 template<> ::masterworker::workerStatus* Arena::CreateMaybeMessage<::masterworker::workerStatus>(Arena*);
@@ -108,23 +108,23 @@ inline bool workerJob_jobTypeEnum_Parse(
 }
 // ===================================================================
 
-class dummy PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.dummy) */ {
+class masterInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.masterInfo) */ {
  public:
-  inline dummy() : dummy(nullptr) {}
-  virtual ~dummy();
+  inline masterInfo() : masterInfo(nullptr) {}
+  virtual ~masterInfo();
 
-  dummy(const dummy& from);
-  dummy(dummy&& from) noexcept
-    : dummy() {
+  masterInfo(const masterInfo& from);
+  masterInfo(masterInfo&& from) noexcept
+    : masterInfo() {
     *this = ::std::move(from);
   }
 
-  inline dummy& operator=(const dummy& from) {
+  inline masterInfo& operator=(const masterInfo& from) {
     CopyFrom(from);
     return *this;
   }
-  inline dummy& operator=(dummy&& from) noexcept {
+  inline masterInfo& operator=(masterInfo&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -142,20 +142,20 @@ class dummy PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const dummy& default_instance();
+  static const masterInfo& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const dummy* internal_default_instance() {
-    return reinterpret_cast<const dummy*>(
-               &_dummy_default_instance_);
+  static inline const masterInfo* internal_default_instance() {
+    return reinterpret_cast<const masterInfo*>(
+               &_masterInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(dummy& a, dummy& b) {
+  friend void swap(masterInfo& a, masterInfo& b) {
     a.Swap(&b);
   }
-  inline void Swap(dummy* other) {
+  inline void Swap(masterInfo* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -163,7 +163,7 @@ class dummy PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(dummy* other) {
+  void UnsafeArenaSwap(masterInfo* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -171,17 +171,17 @@ class dummy PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline dummy* New() const final {
-    return CreateMaybeMessage<dummy>(nullptr);
+  inline masterInfo* New() const final {
+    return CreateMaybeMessage<masterInfo>(nullptr);
   }
 
-  dummy* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<dummy>(arena);
+  masterInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<masterInfo>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const dummy& from);
-  void MergeFrom(const dummy& from);
+  void CopyFrom(const masterInfo& from);
+  void MergeFrom(const masterInfo& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -195,13 +195,13 @@ class dummy PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(dummy* other);
+  void InternalSwap(masterInfo* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "masterworker.dummy";
+    return "masterworker.masterInfo";
   }
   protected:
-  explicit dummy(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit masterInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -220,13 +220,33 @@ class dummy PROTOBUF_FINAL :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:masterworker.dummy)
+  enum : int {
+    kIpAddressFieldNumber = 1,
+  };
+  // string ipAddress = 1;
+  void clear_ipaddress();
+  const std::string& ipaddress() const;
+  void set_ipaddress(const std::string& value);
+  void set_ipaddress(std::string&& value);
+  void set_ipaddress(const char* value);
+  void set_ipaddress(const char* value, size_t size);
+  std::string* mutable_ipaddress();
+  std::string* release_ipaddress();
+  void set_allocated_ipaddress(std::string* ipaddress);
+  private:
+  const std::string& _internal_ipaddress() const;
+  void _internal_set_ipaddress(const std::string& value);
+  std::string* _internal_mutable_ipaddress();
+  public:
+
+  // @@protoc_insertion_point(class_scope:masterworker.masterInfo)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ipaddress_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -607,9 +627,9 @@ class workerInfo PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kWorkerIPFieldNumber = 1,
+    kWorkeripFieldNumber = 1,
   };
-  // string workerIP = 1;
+  // string workerip = 1;
   void clear_workerip();
   const std::string& workerip() const;
   void set_workerip(const std::string& value);
@@ -948,7 +968,69 @@ class jobResult PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// dummy
+// masterInfo
+
+// string ipAddress = 1;
+inline void masterInfo::clear_ipaddress() {
+  ipaddress_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& masterInfo::ipaddress() const {
+  // @@protoc_insertion_point(field_get:masterworker.masterInfo.ipAddress)
+  return _internal_ipaddress();
+}
+inline void masterInfo::set_ipaddress(const std::string& value) {
+  _internal_set_ipaddress(value);
+  // @@protoc_insertion_point(field_set:masterworker.masterInfo.ipAddress)
+}
+inline std::string* masterInfo::mutable_ipaddress() {
+  // @@protoc_insertion_point(field_mutable:masterworker.masterInfo.ipAddress)
+  return _internal_mutable_ipaddress();
+}
+inline const std::string& masterInfo::_internal_ipaddress() const {
+  return ipaddress_.Get();
+}
+inline void masterInfo::_internal_set_ipaddress(const std::string& value) {
+  
+  ipaddress_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void masterInfo::set_ipaddress(std::string&& value) {
+  
+  ipaddress_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.masterInfo.ipAddress)
+}
+inline void masterInfo::set_ipaddress(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  ipaddress_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:masterworker.masterInfo.ipAddress)
+}
+inline void masterInfo::set_ipaddress(const char* value,
+    size_t size) {
+  
+  ipaddress_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:masterworker.masterInfo.ipAddress)
+}
+inline std::string* masterInfo::_internal_mutable_ipaddress() {
+  
+  return ipaddress_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* masterInfo::release_ipaddress() {
+  // @@protoc_insertion_point(field_release:masterworker.masterInfo.ipAddress)
+  return ipaddress_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void masterInfo::set_allocated_ipaddress(std::string* ipaddress) {
+  if (ipaddress != nullptr) {
+    
+  } else {
+    
+  }
+  ipaddress_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ipaddress,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:masterworker.masterInfo.ipAddress)
+}
 
 // -------------------------------------------------------------------
 
@@ -1236,20 +1318,20 @@ inline void workerJob::set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // workerInfo
 
-// string workerIP = 1;
+// string workerip = 1;
 inline void workerInfo::clear_workerip() {
   workerip_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline const std::string& workerInfo::workerip() const {
-  // @@protoc_insertion_point(field_get:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_get:masterworker.workerInfo.workerip)
   return _internal_workerip();
 }
 inline void workerInfo::set_workerip(const std::string& value) {
   _internal_set_workerip(value);
-  // @@protoc_insertion_point(field_set:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_set:masterworker.workerInfo.workerip)
 }
 inline std::string* workerInfo::mutable_workerip() {
-  // @@protoc_insertion_point(field_mutable:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_mutable:masterworker.workerInfo.workerip)
   return _internal_mutable_workerip();
 }
 inline const std::string& workerInfo::_internal_workerip() const {
@@ -1263,28 +1345,28 @@ inline void workerInfo::set_workerip(std::string&& value) {
   
   workerip_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.workerInfo.workerip)
 }
 inline void workerInfo::set_workerip(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   workerip_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_set_char:masterworker.workerInfo.workerip)
 }
 inline void workerInfo::set_workerip(const char* value,
     size_t size) {
   
   workerip_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_set_pointer:masterworker.workerInfo.workerip)
 }
 inline std::string* workerInfo::_internal_mutable_workerip() {
   
   return workerip_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline std::string* workerInfo::release_workerip() {
-  // @@protoc_insertion_point(field_release:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_release:masterworker.workerInfo.workerip)
   return workerip_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void workerInfo::set_allocated_workerip(std::string* workerip) {
@@ -1295,7 +1377,7 @@ inline void workerInfo::set_allocated_workerip(std::string* workerip) {
   }
   workerip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), workerip,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:masterworker.workerInfo.workerIP)
+  // @@protoc_insertion_point(field_set_allocated:masterworker.workerInfo.workerip)
 }
 
 // -------------------------------------------------------------------
