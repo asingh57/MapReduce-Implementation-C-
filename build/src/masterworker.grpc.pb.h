@@ -534,14 +534,6 @@ class worker final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::workerStatus>> PrepareAsyncgetHealth(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::workerStatus>>(PrepareAsyncgetHealthRaw(context, request, cq));
     }
-    // get results from a job that was assigned to the worker
-    virtual ::grpc::Status getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::masterworker::jobResult* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::jobResult>> AsyncgetResults(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::jobResult>>(AsyncgetResultsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::jobResult>> PrepareAsyncgetResults(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::jobResult>>(PrepareAsyncgetResultsRaw(context, request, cq));
-    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -558,19 +550,6 @@ class worker final {
       #else
       virtual void getHealth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::workerStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // get results from a job that was assigned to the worker
-      virtual void getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void getResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::jobResult* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void getResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::jobResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void getResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::jobResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -582,8 +561,6 @@ class worker final {
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::workerStatus>* AsyncgetHealthRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::workerStatus>* PrepareAsyncgetHealthRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::jobResult>* AsyncgetResultsRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::masterworker::jobResult>* PrepareAsyncgetResultsRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -594,13 +571,6 @@ class worker final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::masterworker::workerStatus>> PrepareAsyncgetHealth(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::masterworker::workerStatus>>(PrepareAsyncgetHealthRaw(context, request, cq));
-    }
-    ::grpc::Status getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::masterworker::jobResult* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::masterworker::jobResult>> AsyncgetResults(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::masterworker::jobResult>>(AsyncgetResultsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::masterworker::jobResult>> PrepareAsyncgetResults(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::masterworker::jobResult>>(PrepareAsyncgetResultsRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -617,18 +587,6 @@ class worker final {
       #else
       void getHealth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::workerStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response, std::function<void(::grpc::Status)>) override;
-      void getResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::jobResult* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void getResults(::grpc::ClientContext* context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void getResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::jobResult* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void getResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::jobResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -642,10 +600,7 @@ class worker final {
     class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::masterworker::workerStatus>* AsyncgetHealthRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::masterworker::workerStatus>* PrepareAsyncgetHealthRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::masterworker::jobResult>* AsyncgetResultsRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::masterworker::jobResult>* PrepareAsyncgetResultsRaw(::grpc::ClientContext* context, const ::masterworker::masterInfo& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_getHealth_;
-    const ::grpc::internal::RpcMethod rpcmethod_getResults_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -655,8 +610,6 @@ class worker final {
     virtual ~Service();
     // get health of worker "heartbeating"
     virtual ::grpc::Status getHealth(::grpc::ServerContext* context, const ::masterworker::masterInfo* request, ::masterworker::workerStatus* response);
-    // get results from a job that was assigned to the worker
-    virtual ::grpc::Status getResults(::grpc::ServerContext* context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_getHealth : public BaseClass {
@@ -678,27 +631,7 @@ class worker final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  template <class BaseClass>
-  class WithAsyncMethod_getResults : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_getResults() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_getResults() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status getResults(::grpc::ServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestgetResults(::grpc::ServerContext* context, ::masterworker::masterInfo* request, ::grpc::ServerAsyncResponseWriter< ::masterworker::jobResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_getHealth<WithAsyncMethod_getResults<Service > > AsyncService;
+  typedef WithAsyncMethod_getHealth<Service > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_getHealth : public BaseClass {
    private:
@@ -746,58 +679,11 @@ class worker final {
     #endif
       { return nullptr; }
   };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_getResults : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_getResults() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::masterworker::masterInfo, ::masterworker::jobResult>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::masterworker::masterInfo* request, ::masterworker::jobResult* response) { return this->getResults(context, request, response); }));}
-    void SetMessageAllocatorFor_getResults(
-        ::grpc::experimental::MessageAllocator< ::masterworker::masterInfo, ::masterworker::jobResult>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::masterworker::masterInfo, ::masterworker::jobResult>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_getResults() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status getResults(::grpc::ServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* getResults(
-      ::grpc::CallbackServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* getResults(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/)
-    #endif
-      { return nullptr; }
-  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_getHealth<ExperimentalWithCallbackMethod_getResults<Service > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_getHealth<Service > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_getHealth<ExperimentalWithCallbackMethod_getResults<Service > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_getHealth<Service > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_getHealth : public BaseClass {
    private:
@@ -811,23 +697,6 @@ class worker final {
     }
     // disable synchronous version of this method
     ::grpc::Status getHealth(::grpc::ServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::workerStatus* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_getResults : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_getResults() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_getResults() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status getResults(::grpc::ServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -850,26 +719,6 @@ class worker final {
     }
     void RequestgetHealth(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_getResults : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_getResults() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_getResults() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status getResults(::grpc::ServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestgetResults(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -911,44 +760,6 @@ class worker final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_getResults : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_getResults() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->getResults(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_getResults() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status getResults(::grpc::ServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* getResults(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* getResults(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_getHealth : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -975,36 +786,9 @@ class worker final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedgetHealth(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::masterworker::masterInfo,::masterworker::workerStatus>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_getResults : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_getResults() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::masterworker::masterInfo, ::masterworker::jobResult>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
-                     ::masterworker::masterInfo, ::masterworker::jobResult>* streamer) {
-                       return this->StreamedgetResults(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_getResults() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status getResults(::grpc::ServerContext* /*context*/, const ::masterworker::masterInfo* /*request*/, ::masterworker::jobResult* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedgetResults(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::masterworker::masterInfo,::masterworker::jobResult>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_getHealth<WithStreamedUnaryMethod_getResults<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_getHealth<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_getHealth<WithStreamedUnaryMethod_getResults<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_getHealth<Service > StreamedService;
 };
 
 }  // namespace masterworker

@@ -46,25 +46,7 @@ class workerStatusDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<workerStatus> _instance;
 } _workerStatus_default_instance_;
-class jobResultDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<jobResult> _instance;
-} _jobResult_default_instance_;
 }  // namespace masterworker
-static void InitDefaultsscc_info_jobResult_masterworker_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::masterworker::_jobResult_default_instance_;
-    new (ptr) ::masterworker::jobResult();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::masterworker::jobResult::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_jobResult_masterworker_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_jobResult_masterworker_2eproto}, {}};
-
 static void InitDefaultsscc_info_jobResultsInfo_masterworker_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -166,7 +148,7 @@ static void InitDefaultsscc_info_workerStatus_masterworker_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_workerStatus_masterworker_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_workerStatus_masterworker_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_masterworker_2eproto[8];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_masterworker_2eproto[7];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_masterworker_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_masterworker_2eproto = nullptr;
 
@@ -222,14 +204,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_masterworker_2eproto::offsets[
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::masterworker::workerStatus, ishealthy_),
-  PROTOBUF_FIELD_OFFSET(::masterworker::workerStatus, isdone_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::masterworker::jobResult, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::masterworker::jobResult, outputpath_),
-  PROTOBUF_FIELD_OFFSET(::masterworker::jobResult, jobid_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::masterworker::keyValuePair)},
@@ -239,7 +213,6 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 27, -1, sizeof(::masterworker::workerJob)},
   { 39, -1, sizeof(::masterworker::workerInfo)},
   { 45, -1, sizeof(::masterworker::workerStatus)},
-  { 52, -1, sizeof(::masterworker::jobResult)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -250,7 +223,6 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_workerJob_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_workerInfo_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_workerStatus_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_jobResult_default_instance_),
 };
 
 const char descriptor_table_protodef_masterworker_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -268,22 +240,17 @@ const char descriptor_table_protodef_masterworker_2eproto[] PROTOBUF_SECTION_VAR
   "orker.workerJob.jobTypeEnum\022\016\n\006userID\030\006 "
   "\001(\t\022\r\n\005jobID\030\007 \001(\005\"&\n\013jobTypeEnum\022\n\n\006MAP"
   "PER\020\000\022\013\n\007REDUCER\020\001\"\036\n\nworkerInfo\022\020\n\010work"
-  "erip\030\001 \001(\t\"1\n\014workerStatus\022\021\n\tisHealthy\030"
-  "\001 \001(\010\022\016\n\006isDone\030\002 \001(\010\".\n\tjobResult\022\022\n\nou"
-  "tputPath\030\001 \001(\t\022\r\n\005jobID\030\002 \001(\0052\214\001\n\006master"
-  "\022=\n\006getJob\022\030.masterworker.workerInfo\032\027.m"
-  "asterworker.workerJob\"\000\022C\n\007jobDone\022\034.mas"
-  "terworker.jobResultsInfo\032\030.masterworker."
-  "masterInfo\"\0002\220\001\n\006worker\022C\n\tgetHealth\022\030.m"
-  "asterworker.masterInfo\032\032.masterworker.wo"
-  "rkerStatus\"\000\022A\n\ngetResults\022\030.masterworke"
-  "r.masterInfo\032\027.masterworker.jobResult\"\000b"
-  "\006proto3"
+  "erip\030\001 \001(\t\"!\n\014workerStatus\022\021\n\tisHealthy\030"
+  "\001 \001(\0102\214\001\n\006master\022=\n\006getJob\022\030.masterworke"
+  "r.workerInfo\032\027.masterworker.workerJob\"\000\022"
+  "C\n\007jobDone\022\034.masterworker.jobResultsInfo"
+  "\032\030.masterworker.masterInfo\"\0002M\n\006worker\022C"
+  "\n\tgetHealth\022\030.masterworker.masterInfo\032\032."
+  "masterworker.workerStatus\"\000b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_masterworker_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_masterworker_2eproto_sccs[8] = {
-  &scc_info_jobResult_masterworker_2eproto.base,
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_masterworker_2eproto_sccs[7] = {
   &scc_info_jobResultsInfo_masterworker_2eproto.base,
   &scc_info_keyValuePair_masterworker_2eproto.base,
   &scc_info_masterInfo_masterworker_2eproto.base,
@@ -294,10 +261,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_mas
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_masterworker_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_masterworker_2eproto = {
-  false, false, descriptor_table_protodef_masterworker_2eproto, "masterworker.proto", 967,
-  &descriptor_table_masterworker_2eproto_once, descriptor_table_masterworker_2eproto_sccs, descriptor_table_masterworker_2eproto_deps, 8, 0,
+  false, false, descriptor_table_protodef_masterworker_2eproto, "masterworker.proto", 835,
+  &descriptor_table_masterworker_2eproto_once, descriptor_table_masterworker_2eproto_sccs, descriptor_table_masterworker_2eproto_deps, 7, 0,
   schemas, file_default_instances, TableStruct_masterworker_2eproto::offsets,
-  file_level_metadata_masterworker_2eproto, 8, file_level_enum_descriptors_masterworker_2eproto, file_level_service_descriptors_masterworker_2eproto,
+  file_level_metadata_masterworker_2eproto, 7, file_level_enum_descriptors_masterworker_2eproto, file_level_service_descriptors_masterworker_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -1897,16 +1864,12 @@ workerStatus::workerStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 workerStatus::workerStatus(const workerStatus& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&ishealthy_, &from.ishealthy_,
-    static_cast<size_t>(reinterpret_cast<char*>(&isdone_) -
-    reinterpret_cast<char*>(&ishealthy_)) + sizeof(isdone_));
+  ishealthy_ = from.ishealthy_;
   // @@protoc_insertion_point(copy_constructor:masterworker.workerStatus)
 }
 
 void workerStatus::SharedCtor() {
-  ::memset(&ishealthy_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&isdone_) -
-      reinterpret_cast<char*>(&ishealthy_)) + sizeof(isdone_));
+  ishealthy_ = false;
 }
 
 workerStatus::~workerStatus() {
@@ -1940,9 +1903,7 @@ void workerStatus::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&ishealthy_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&isdone_) -
-      reinterpret_cast<char*>(&ishealthy_)) + sizeof(isdone_));
+  ishealthy_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1958,13 +1919,6 @@ const char* workerStatus::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           ishealthy_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // bool isDone = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          isdone_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2002,12 +1956,6 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_ishealthy(), target);
   }
 
-  // bool isDone = 2;
-  if (this->isdone() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_isdone(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2026,11 +1974,6 @@ size_t workerStatus::ByteSizeLong() const {
 
   // bool isHealthy = 1;
   if (this->ishealthy() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool isDone = 2;
-  if (this->isdone() != 0) {
     total_size += 1 + 1;
   }
 
@@ -2068,9 +2011,6 @@ void workerStatus::MergeFrom(const workerStatus& from) {
   if (from.ishealthy() != 0) {
     _internal_set_ishealthy(from._internal_ishealthy());
   }
-  if (from.isdone() != 0) {
-    _internal_set_isdone(from._internal_isdone());
-  }
 }
 
 void workerStatus::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -2094,251 +2034,10 @@ bool workerStatus::IsInitialized() const {
 void workerStatus::InternalSwap(workerStatus* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(workerStatus, isdone_)
-      + sizeof(workerStatus::isdone_)
-      - PROTOBUF_FIELD_OFFSET(workerStatus, ishealthy_)>(
-          reinterpret_cast<char*>(&ishealthy_),
-          reinterpret_cast<char*>(&other->ishealthy_));
+  swap(ishealthy_, other->ishealthy_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata workerStatus::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void jobResult::InitAsDefaultInstance() {
-}
-class jobResult::_Internal {
- public:
-};
-
-jobResult::jobResult(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:masterworker.jobResult)
-}
-jobResult::jobResult(const jobResult& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  outputpath_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_outputpath().empty()) {
-    outputpath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_outputpath(),
-      GetArena());
-  }
-  jobid_ = from.jobid_;
-  // @@protoc_insertion_point(copy_constructor:masterworker.jobResult)
-}
-
-void jobResult::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_jobResult_masterworker_2eproto.base);
-  outputpath_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  jobid_ = 0;
-}
-
-jobResult::~jobResult() {
-  // @@protoc_insertion_point(destructor:masterworker.jobResult)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void jobResult::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  outputpath_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void jobResult::ArenaDtor(void* object) {
-  jobResult* _this = reinterpret_cast< jobResult* >(object);
-  (void)_this;
-}
-void jobResult::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void jobResult::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const jobResult& jobResult::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_jobResult_masterworker_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void jobResult::Clear() {
-// @@protoc_insertion_point(message_clear_start:masterworker.jobResult)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  outputpath_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  jobid_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* jobResult::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // string outputPath = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_outputpath();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "masterworker.jobResult.outputPath"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // int32 jobID = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          jobid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* jobResult::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:masterworker.jobResult)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string outputPath = 1;
-  if (this->outputpath().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_outputpath().data(), static_cast<int>(this->_internal_outputpath().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "masterworker.jobResult.outputPath");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_outputpath(), target);
-  }
-
-  // int32 jobID = 2;
-  if (this->jobid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_jobid(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:masterworker.jobResult)
-  return target;
-}
-
-size_t jobResult::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:masterworker.jobResult)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string outputPath = 1;
-  if (this->outputpath().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_outputpath());
-  }
-
-  // int32 jobID = 2;
-  if (this->jobid() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_jobid());
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void jobResult::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:masterworker.jobResult)
-  GOOGLE_DCHECK_NE(&from, this);
-  const jobResult* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<jobResult>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:masterworker.jobResult)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:masterworker.jobResult)
-    MergeFrom(*source);
-  }
-}
-
-void jobResult::MergeFrom(const jobResult& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:masterworker.jobResult)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.outputpath().size() > 0) {
-    _internal_set_outputpath(from._internal_outputpath());
-  }
-  if (from.jobid() != 0) {
-    _internal_set_jobid(from._internal_jobid());
-  }
-}
-
-void jobResult::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:masterworker.jobResult)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void jobResult::CopyFrom(const jobResult& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:masterworker.jobResult)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool jobResult::IsInitialized() const {
-  return true;
-}
-
-void jobResult::InternalSwap(jobResult* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  outputpath_.Swap(&other->outputpath_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(jobid_, other->jobid_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata jobResult::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -2366,9 +2065,6 @@ template<> PROTOBUF_NOINLINE ::masterworker::workerInfo* Arena::CreateMaybeMessa
 }
 template<> PROTOBUF_NOINLINE ::masterworker::workerStatus* Arena::CreateMaybeMessage< ::masterworker::workerStatus >(Arena* arena) {
   return Arena::CreateMessageInternal< ::masterworker::workerStatus >(arena);
-}
-template<> PROTOBUF_NOINLINE ::masterworker::jobResult* Arena::CreateMaybeMessage< ::masterworker::jobResult >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::masterworker::jobResult >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

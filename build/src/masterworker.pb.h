@@ -48,7 +48,7 @@ struct TableStruct_masterworker_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[7]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -56,9 +56,6 @@ struct TableStruct_masterworker_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_masterworker_2eproto;
 namespace masterworker {
-class jobResult;
-class jobResultDefaultTypeInternal;
-extern jobResultDefaultTypeInternal _jobResult_default_instance_;
 class jobResultsInfo;
 class jobResultsInfoDefaultTypeInternal;
 extern jobResultsInfoDefaultTypeInternal _jobResultsInfo_default_instance_;
@@ -82,7 +79,6 @@ class workerStatusDefaultTypeInternal;
 extern workerStatusDefaultTypeInternal _workerStatus_default_instance_;
 }  // namespace masterworker
 PROTOBUF_NAMESPACE_OPEN
-template<> ::masterworker::jobResult* Arena::CreateMaybeMessage<::masterworker::jobResult>(Arena*);
 template<> ::masterworker::jobResultsInfo* Arena::CreateMaybeMessage<::masterworker::jobResultsInfo>(Arena*);
 template<> ::masterworker::keyValuePair* Arena::CreateMaybeMessage<::masterworker::keyValuePair>(Arena*);
 template<> ::masterworker::masterInfo* Arena::CreateMaybeMessage<::masterworker::masterInfo>(Arena*);
@@ -1276,7 +1272,6 @@ class workerStatus PROTOBUF_FINAL :
 
   enum : int {
     kIsHealthyFieldNumber = 1,
-    kIsDoneFieldNumber = 2,
   };
   // bool isHealthy = 1;
   void clear_ishealthy();
@@ -1287,15 +1282,6 @@ class workerStatus PROTOBUF_FINAL :
   void _internal_set_ishealthy(bool value);
   public:
 
-  // bool isDone = 2;
-  void clear_isdone();
-  bool isdone() const;
-  void set_isdone(bool value);
-  private:
-  bool _internal_isdone() const;
-  void _internal_set_isdone(bool value);
-  public:
-
   // @@protoc_insertion_point(class_scope:masterworker.workerStatus)
  private:
   class _Internal;
@@ -1304,162 +1290,6 @@ class workerStatus PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   bool ishealthy_;
-  bool isdone_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_masterworker_2eproto;
-};
-// -------------------------------------------------------------------
-
-class jobResult PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.jobResult) */ {
- public:
-  inline jobResult() : jobResult(nullptr) {}
-  virtual ~jobResult();
-
-  jobResult(const jobResult& from);
-  jobResult(jobResult&& from) noexcept
-    : jobResult() {
-    *this = ::std::move(from);
-  }
-
-  inline jobResult& operator=(const jobResult& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline jobResult& operator=(jobResult&& from) noexcept {
-    if (GetArena() == from.GetArena()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const jobResult& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const jobResult* internal_default_instance() {
-    return reinterpret_cast<const jobResult*>(
-               &_jobResult_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    7;
-
-  friend void swap(jobResult& a, jobResult& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(jobResult* other) {
-    if (other == this) return;
-    if (GetArena() == other->GetArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(jobResult* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline jobResult* New() const final {
-    return CreateMaybeMessage<jobResult>(nullptr);
-  }
-
-  jobResult* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<jobResult>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const jobResult& from);
-  void MergeFrom(const jobResult& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(jobResult* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "masterworker.jobResult";
-  }
-  protected:
-  explicit jobResult(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_masterworker_2eproto);
-    return ::descriptor_table_masterworker_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kOutputPathFieldNumber = 1,
-    kJobIDFieldNumber = 2,
-  };
-  // string outputPath = 1;
-  void clear_outputpath();
-  const std::string& outputpath() const;
-  void set_outputpath(const std::string& value);
-  void set_outputpath(std::string&& value);
-  void set_outputpath(const char* value);
-  void set_outputpath(const char* value, size_t size);
-  std::string* mutable_outputpath();
-  std::string* release_outputpath();
-  void set_allocated_outputpath(std::string* outputpath);
-  private:
-  const std::string& _internal_outputpath() const;
-  void _internal_set_outputpath(const std::string& value);
-  std::string* _internal_mutable_outputpath();
-  public:
-
-  // int32 jobID = 2;
-  void clear_jobid();
-  ::PROTOBUF_NAMESPACE_ID::int32 jobid() const;
-  void set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_jobid() const;
-  void _internal_set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:masterworker.jobResult)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr outputpath_;
-  ::PROTOBUF_NAMESPACE_ID::int32 jobid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -2311,117 +2141,9 @@ inline void workerStatus::set_ishealthy(bool value) {
   // @@protoc_insertion_point(field_set:masterworker.workerStatus.isHealthy)
 }
 
-// bool isDone = 2;
-inline void workerStatus::clear_isdone() {
-  isdone_ = false;
-}
-inline bool workerStatus::_internal_isdone() const {
-  return isdone_;
-}
-inline bool workerStatus::isdone() const {
-  // @@protoc_insertion_point(field_get:masterworker.workerStatus.isDone)
-  return _internal_isdone();
-}
-inline void workerStatus::_internal_set_isdone(bool value) {
-  
-  isdone_ = value;
-}
-inline void workerStatus::set_isdone(bool value) {
-  _internal_set_isdone(value);
-  // @@protoc_insertion_point(field_set:masterworker.workerStatus.isDone)
-}
-
-// -------------------------------------------------------------------
-
-// jobResult
-
-// string outputPath = 1;
-inline void jobResult::clear_outputpath() {
-  outputpath_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline const std::string& jobResult::outputpath() const {
-  // @@protoc_insertion_point(field_get:masterworker.jobResult.outputPath)
-  return _internal_outputpath();
-}
-inline void jobResult::set_outputpath(const std::string& value) {
-  _internal_set_outputpath(value);
-  // @@protoc_insertion_point(field_set:masterworker.jobResult.outputPath)
-}
-inline std::string* jobResult::mutable_outputpath() {
-  // @@protoc_insertion_point(field_mutable:masterworker.jobResult.outputPath)
-  return _internal_mutable_outputpath();
-}
-inline const std::string& jobResult::_internal_outputpath() const {
-  return outputpath_.Get();
-}
-inline void jobResult::_internal_set_outputpath(const std::string& value) {
-  
-  outputpath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void jobResult::set_outputpath(std::string&& value) {
-  
-  outputpath_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:masterworker.jobResult.outputPath)
-}
-inline void jobResult::set_outputpath(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  outputpath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:masterworker.jobResult.outputPath)
-}
-inline void jobResult::set_outputpath(const char* value,
-    size_t size) {
-  
-  outputpath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:masterworker.jobResult.outputPath)
-}
-inline std::string* jobResult::_internal_mutable_outputpath() {
-  
-  return outputpath_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* jobResult::release_outputpath() {
-  // @@protoc_insertion_point(field_release:masterworker.jobResult.outputPath)
-  return outputpath_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void jobResult::set_allocated_outputpath(std::string* outputpath) {
-  if (outputpath != nullptr) {
-    
-  } else {
-    
-  }
-  outputpath_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), outputpath,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:masterworker.jobResult.outputPath)
-}
-
-// int32 jobID = 2;
-inline void jobResult::clear_jobid() {
-  jobid_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 jobResult::_internal_jobid() const {
-  return jobid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 jobResult::jobid() const {
-  // @@protoc_insertion_point(field_get:masterworker.jobResult.jobID)
-  return _internal_jobid();
-}
-inline void jobResult::_internal_set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  jobid_ = value;
-}
-inline void jobResult::set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_jobid(value);
-  // @@protoc_insertion_point(field_set:masterworker.jobResult.jobID)
-}
-
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
