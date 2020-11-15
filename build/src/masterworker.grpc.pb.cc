@@ -23,6 +23,7 @@ namespace masterworker {
 
 static const char* master_method_names[] = {
   "/masterworker.master/getJob",
+  "/masterworker.master/jobDone",
 };
 
 std::unique_ptr< master::Stub> master::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -33,6 +34,7 @@ std::unique_ptr< master::Stub> master::NewStub(const std::shared_ptr< ::grpc::Ch
 
 master::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_getJob_(master_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_jobDone_(master_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status master::Stub::getJob(::grpc::ClientContext* context, const ::masterworker::workerInfo& request, ::masterworker::workerJob* response) {
@@ -63,6 +65,34 @@ void master::Stub::experimental_async::getJob(::grpc::ClientContext* context, co
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::masterworker::workerJob>::Create(channel_.get(), cq, rpcmethod_getJob_, context, request, false);
 }
 
+::grpc::Status master::Stub::jobDone(::grpc::ClientContext* context, const ::masterworker::jobResultsInfo& request, ::masterworker::masterInfo* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_jobDone_, context, request, response);
+}
+
+void master::Stub::experimental_async::jobDone(::grpc::ClientContext* context, const ::masterworker::jobResultsInfo* request, ::masterworker::masterInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_jobDone_, context, request, response, std::move(f));
+}
+
+void master::Stub::experimental_async::jobDone(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::masterInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_jobDone_, context, request, response, std::move(f));
+}
+
+void master::Stub::experimental_async::jobDone(::grpc::ClientContext* context, const ::masterworker::jobResultsInfo* request, ::masterworker::masterInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_jobDone_, context, request, response, reactor);
+}
+
+void master::Stub::experimental_async::jobDone(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::masterworker::masterInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_jobDone_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::masterworker::masterInfo>* master::Stub::AsyncjobDoneRaw(::grpc::ClientContext* context, const ::masterworker::jobResultsInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::masterworker::masterInfo>::Create(channel_.get(), cq, rpcmethod_jobDone_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::masterworker::masterInfo>* master::Stub::PrepareAsyncjobDoneRaw(::grpc::ClientContext* context, const ::masterworker::jobResultsInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::masterworker::masterInfo>::Create(channel_.get(), cq, rpcmethod_jobDone_, context, request, false);
+}
+
 master::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       master_method_names[0],
@@ -74,12 +104,29 @@ master::Service::Service() {
              ::masterworker::workerJob* resp) {
                return service->getJob(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      master_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< master::Service, ::masterworker::jobResultsInfo, ::masterworker::masterInfo>(
+          [](master::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::masterworker::jobResultsInfo* req,
+             ::masterworker::masterInfo* resp) {
+               return service->jobDone(ctx, req, resp);
+             }, this)));
 }
 
 master::Service::~Service() {
 }
 
 ::grpc::Status master::Service::getJob(::grpc::ServerContext* context, const ::masterworker::workerInfo* request, ::masterworker::workerJob* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status master::Service::jobDone(::grpc::ServerContext* context, const ::masterworker::jobResultsInfo* request, ::masterworker::masterInfo* response) {
   (void) context;
   (void) request;
   (void) response;

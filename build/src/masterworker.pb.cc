@@ -14,11 +14,26 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+extern PROTOBUF_INTERNAL_EXPORT_masterworker_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_keyValuePair_masterworker_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_masterworker_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_reducerKeyValue_masterworker_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_masterworker_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_workerJob_masterworker_2eproto;
 namespace masterworker {
+class keyValuePairDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<keyValuePair> _instance;
+} _keyValuePair_default_instance_;
+class jobResultsInfoDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<jobResultsInfo> _instance;
+} _jobResultsInfo_default_instance_;
 class masterInfoDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<masterInfo> _instance;
 } _masterInfo_default_instance_;
+class reducerKeyValueDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<reducerKeyValue> _instance;
+} _reducerKeyValue_default_instance_;
 class workerJobDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<workerJob> _instance;
@@ -50,6 +65,36 @@ static void InitDefaultsscc_info_jobResult_masterworker_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_jobResult_masterworker_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_jobResult_masterworker_2eproto}, {}};
 
+static void InitDefaultsscc_info_jobResultsInfo_masterworker_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::masterworker::_jobResultsInfo_default_instance_;
+    new (ptr) ::masterworker::jobResultsInfo();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::masterworker::jobResultsInfo::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_jobResultsInfo_masterworker_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_jobResultsInfo_masterworker_2eproto}, {
+      &scc_info_workerJob_masterworker_2eproto.base,
+      &scc_info_keyValuePair_masterworker_2eproto.base,}};
+
+static void InitDefaultsscc_info_keyValuePair_masterworker_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::masterworker::_keyValuePair_default_instance_;
+    new (ptr) ::masterworker::keyValuePair();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::masterworker::keyValuePair::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_keyValuePair_masterworker_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_keyValuePair_masterworker_2eproto}, {}};
+
 static void InitDefaultsscc_info_masterInfo_masterworker_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -63,6 +108,20 @@ static void InitDefaultsscc_info_masterInfo_masterworker_2eproto() {
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_masterInfo_masterworker_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_masterInfo_masterworker_2eproto}, {}};
+
+static void InitDefaultsscc_info_reducerKeyValue_masterworker_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::masterworker::_reducerKeyValue_default_instance_;
+    new (ptr) ::masterworker::reducerKeyValue();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::masterworker::reducerKeyValue::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_reducerKeyValue_masterworker_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_reducerKeyValue_masterworker_2eproto}, {}};
 
 static void InitDefaultsscc_info_workerInfo_masterworker_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -89,8 +148,9 @@ static void InitDefaultsscc_info_workerJob_masterworker_2eproto() {
   ::masterworker::workerJob::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_workerJob_masterworker_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_workerJob_masterworker_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_workerJob_masterworker_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_workerJob_masterworker_2eproto}, {
+      &scc_info_reducerKeyValue_masterworker_2eproto.base,}};
 
 static void InitDefaultsscc_info_workerStatus_masterworker_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -106,11 +166,25 @@ static void InitDefaultsscc_info_workerStatus_masterworker_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_workerStatus_masterworker_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_workerStatus_masterworker_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_masterworker_2eproto[5];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_masterworker_2eproto[8];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_masterworker_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_masterworker_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_masterworker_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::masterworker::keyValuePair, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::masterworker::keyValuePair, key_),
+  PROTOBUF_FIELD_OFFSET(::masterworker::keyValuePair, value_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::masterworker::jobResultsInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::masterworker::jobResultsInfo, initialjob_),
+  PROTOBUF_FIELD_OFFSET(::masterworker::jobResultsInfo, keysandvalues_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::masterworker::masterInfo, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -118,11 +192,18 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_masterworker_2eproto::offsets[
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::masterworker::masterInfo, ipaddress_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::masterworker::reducerKeyValue, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::masterworker::reducerKeyValue, key_),
+  PROTOBUF_FIELD_OFFSET(::masterworker::reducerKeyValue, filespathlist_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::masterworker::workerJob, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::masterworker::workerJob, reducefileslist_),
+  PROTOBUF_FIELD_OFFSET(::masterworker::workerJob, reducerinfo_),
   PROTOBUF_FIELD_OFFSET(::masterworker::workerJob, mapfilepath_),
   PROTOBUF_FIELD_OFFSET(::masterworker::workerJob, startidxmapper_),
   PROTOBUF_FIELD_OFFSET(::masterworker::workerJob, endidxmapper_),
@@ -151,15 +232,21 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_masterworker_2eproto::offsets[
   PROTOBUF_FIELD_OFFSET(::masterworker::jobResult, jobid_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::masterworker::masterInfo)},
-  { 6, -1, sizeof(::masterworker::workerJob)},
-  { 18, -1, sizeof(::masterworker::workerInfo)},
-  { 24, -1, sizeof(::masterworker::workerStatus)},
-  { 31, -1, sizeof(::masterworker::jobResult)},
+  { 0, -1, sizeof(::masterworker::keyValuePair)},
+  { 7, -1, sizeof(::masterworker::jobResultsInfo)},
+  { 14, -1, sizeof(::masterworker::masterInfo)},
+  { 20, -1, sizeof(::masterworker::reducerKeyValue)},
+  { 27, -1, sizeof(::masterworker::workerJob)},
+  { 39, -1, sizeof(::masterworker::workerInfo)},
+  { 45, -1, sizeof(::masterworker::workerStatus)},
+  { 52, -1, sizeof(::masterworker::jobResult)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_keyValuePair_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_jobResultsInfo_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_masterInfo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_reducerKeyValue_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_workerJob_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_workerInfo_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::masterworker::_workerStatus_default_instance_),
@@ -167,9 +254,15 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_masterworker_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\022masterworker.proto\022\014masterworker\"\037\n\nma"
-  "sterInfo\022\021\n\tipAddress\030\001 \001(\t\"\344\001\n\tworkerJo"
-  "b\022\027\n\017reduceFilesList\030\001 \003(\t\022\023\n\013mapFilePat"
+  "\n\022masterworker.proto\022\014masterworker\"*\n\014ke"
+  "yValuePair\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"p"
+  "\n\016jobResultsInfo\022+\n\ninitialJob\030\001 \001(\0132\027.m"
+  "asterworker.workerJob\0221\n\rkeysAndValues\030\002"
+  " \003(\0132\032.masterworker.keyValuePair\"\037\n\nmast"
+  "erInfo\022\021\n\tipAddress\030\001 \001(\t\"5\n\017reducerKeyV"
+  "alue\022\013\n\003key\030\001 \001(\t\022\025\n\rfilesPathList\030\002 \003(\t"
+  "\"\377\001\n\tworkerJob\0222\n\013reducerInfo\030\001 \001(\0132\035.ma"
+  "sterworker.reducerKeyValue\022\023\n\013mapFilePat"
   "h\030\002 \001(\t\022\026\n\016startIdxMapper\030\003 \001(\005\022\024\n\014endId"
   "xMapper\030\004 \001(\005\0224\n\007jobType\030\005 \001(\0162#.masterw"
   "orker.workerJob.jobTypeEnum\022\016\n\006userID\030\006 "
@@ -177,29 +270,34 @@ const char descriptor_table_protodef_masterworker_2eproto[] PROTOBUF_SECTION_VAR
   "PER\020\000\022\013\n\007REDUCER\020\001\"\036\n\nworkerInfo\022\020\n\010work"
   "erip\030\001 \001(\t\"1\n\014workerStatus\022\021\n\tisHealthy\030"
   "\001 \001(\010\022\016\n\006isDone\030\002 \001(\010\".\n\tjobResult\022\022\n\nou"
-  "tputPath\030\001 \001(\t\022\r\n\005jobID\030\002 \001(\0052G\n\006master\022"
-  "=\n\006getJob\022\030.masterworker.workerInfo\032\027.ma"
-  "sterworker.workerJob\"\0002\220\001\n\006worker\022C\n\tget"
-  "Health\022\030.masterworker.masterInfo\032\032.maste"
-  "rworker.workerStatus\"\000\022A\n\ngetResults\022\030.m"
-  "asterworker.masterInfo\032\027.masterworker.jo"
-  "bResult\"\000b\006proto3"
+  "tputPath\030\001 \001(\t\022\r\n\005jobID\030\002 \001(\0052\214\001\n\006master"
+  "\022=\n\006getJob\022\030.masterworker.workerInfo\032\027.m"
+  "asterworker.workerJob\"\000\022C\n\007jobDone\022\034.mas"
+  "terworker.jobResultsInfo\032\030.masterworker."
+  "masterInfo\"\0002\220\001\n\006worker\022C\n\tgetHealth\022\030.m"
+  "asterworker.masterInfo\032\032.masterworker.wo"
+  "rkerStatus\"\000\022A\n\ngetResults\022\030.masterworke"
+  "r.masterInfo\032\027.masterworker.jobResult\"\000b"
+  "\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_masterworker_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_masterworker_2eproto_sccs[5] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_masterworker_2eproto_sccs[8] = {
   &scc_info_jobResult_masterworker_2eproto.base,
+  &scc_info_jobResultsInfo_masterworker_2eproto.base,
+  &scc_info_keyValuePair_masterworker_2eproto.base,
   &scc_info_masterInfo_masterworker_2eproto.base,
+  &scc_info_reducerKeyValue_masterworker_2eproto.base,
   &scc_info_workerInfo_masterworker_2eproto.base,
   &scc_info_workerJob_masterworker_2eproto.base,
   &scc_info_workerStatus_masterworker_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_masterworker_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_masterworker_2eproto = {
-  false, false, descriptor_table_protodef_masterworker_2eproto, "masterworker.proto", 657,
-  &descriptor_table_masterworker_2eproto_once, descriptor_table_masterworker_2eproto_sccs, descriptor_table_masterworker_2eproto_deps, 5, 0,
+  false, false, descriptor_table_protodef_masterworker_2eproto, "masterworker.proto", 967,
+  &descriptor_table_masterworker_2eproto_once, descriptor_table_masterworker_2eproto_sccs, descriptor_table_masterworker_2eproto_deps, 8, 0,
   schemas, file_default_instances, TableStruct_masterworker_2eproto::offsets,
-  file_level_metadata_masterworker_2eproto, 5, file_level_enum_descriptors_masterworker_2eproto, file_level_service_descriptors_masterworker_2eproto,
+  file_level_metadata_masterworker_2eproto, 8, file_level_enum_descriptors_masterworker_2eproto, file_level_service_descriptors_masterworker_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -226,6 +324,500 @@ constexpr workerJob_jobTypeEnum workerJob::jobTypeEnum_MIN;
 constexpr workerJob_jobTypeEnum workerJob::jobTypeEnum_MAX;
 constexpr int workerJob::jobTypeEnum_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+
+// ===================================================================
+
+void keyValuePair::InitAsDefaultInstance() {
+}
+class keyValuePair::_Internal {
+ public:
+};
+
+keyValuePair::keyValuePair(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:masterworker.keyValuePair)
+}
+keyValuePair::keyValuePair(const keyValuePair& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_key().empty()) {
+    key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_key(),
+      GetArena());
+  }
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_value().empty()) {
+    value_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_value(),
+      GetArena());
+  }
+  // @@protoc_insertion_point(copy_constructor:masterworker.keyValuePair)
+}
+
+void keyValuePair::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_keyValuePair_masterworker_2eproto.base);
+  key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+keyValuePair::~keyValuePair() {
+  // @@protoc_insertion_point(destructor:masterworker.keyValuePair)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void keyValuePair::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void keyValuePair::ArenaDtor(void* object) {
+  keyValuePair* _this = reinterpret_cast< keyValuePair* >(object);
+  (void)_this;
+}
+void keyValuePair::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void keyValuePair::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const keyValuePair& keyValuePair::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_keyValuePair_masterworker_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void keyValuePair::Clear() {
+// @@protoc_insertion_point(message_clear_start:masterworker.keyValuePair)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  value_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* keyValuePair::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string key = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_key();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "masterworker.keyValuePair.key"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string value = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_value();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "masterworker.keyValuePair.value"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* keyValuePair::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:masterworker.keyValuePair)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string key = 1;
+  if (this->key().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_key().data(), static_cast<int>(this->_internal_key().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "masterworker.keyValuePair.key");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_key(), target);
+  }
+
+  // string value = 2;
+  if (this->value().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_value().data(), static_cast<int>(this->_internal_value().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "masterworker.keyValuePair.value");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:masterworker.keyValuePair)
+  return target;
+}
+
+size_t keyValuePair::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:masterworker.keyValuePair)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string key = 1;
+  if (this->key().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_key());
+  }
+
+  // string value = 2;
+  if (this->value().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_value());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void keyValuePair::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:masterworker.keyValuePair)
+  GOOGLE_DCHECK_NE(&from, this);
+  const keyValuePair* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<keyValuePair>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:masterworker.keyValuePair)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:masterworker.keyValuePair)
+    MergeFrom(*source);
+  }
+}
+
+void keyValuePair::MergeFrom(const keyValuePair& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:masterworker.keyValuePair)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.key().size() > 0) {
+    _internal_set_key(from._internal_key());
+  }
+  if (from.value().size() > 0) {
+    _internal_set_value(from._internal_value());
+  }
+}
+
+void keyValuePair::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:masterworker.keyValuePair)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void keyValuePair::CopyFrom(const keyValuePair& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:masterworker.keyValuePair)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool keyValuePair::IsInitialized() const {
+  return true;
+}
+
+void keyValuePair::InternalSwap(keyValuePair* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  key_.Swap(&other->key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata keyValuePair::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void jobResultsInfo::InitAsDefaultInstance() {
+  ::masterworker::_jobResultsInfo_default_instance_._instance.get_mutable()->initialjob_ = const_cast< ::masterworker::workerJob*>(
+      ::masterworker::workerJob::internal_default_instance());
+}
+class jobResultsInfo::_Internal {
+ public:
+  static const ::masterworker::workerJob& initialjob(const jobResultsInfo* msg);
+};
+
+const ::masterworker::workerJob&
+jobResultsInfo::_Internal::initialjob(const jobResultsInfo* msg) {
+  return *msg->initialjob_;
+}
+jobResultsInfo::jobResultsInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  keysandvalues_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:masterworker.jobResultsInfo)
+}
+jobResultsInfo::jobResultsInfo(const jobResultsInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      keysandvalues_(from.keysandvalues_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_initialjob()) {
+    initialjob_ = new ::masterworker::workerJob(*from.initialjob_);
+  } else {
+    initialjob_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:masterworker.jobResultsInfo)
+}
+
+void jobResultsInfo::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_jobResultsInfo_masterworker_2eproto.base);
+  initialjob_ = nullptr;
+}
+
+jobResultsInfo::~jobResultsInfo() {
+  // @@protoc_insertion_point(destructor:masterworker.jobResultsInfo)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void jobResultsInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete initialjob_;
+}
+
+void jobResultsInfo::ArenaDtor(void* object) {
+  jobResultsInfo* _this = reinterpret_cast< jobResultsInfo* >(object);
+  (void)_this;
+}
+void jobResultsInfo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void jobResultsInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const jobResultsInfo& jobResultsInfo::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_jobResultsInfo_masterworker_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void jobResultsInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:masterworker.jobResultsInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  keysandvalues_.Clear();
+  if (GetArena() == nullptr && initialjob_ != nullptr) {
+    delete initialjob_;
+  }
+  initialjob_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* jobResultsInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .masterworker.workerJob initialJob = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_initialjob(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .masterworker.keyValuePair keysAndValues = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_keysandvalues(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* jobResultsInfo::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:masterworker.jobResultsInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .masterworker.workerJob initialJob = 1;
+  if (this->has_initialjob()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::initialjob(this), target, stream);
+  }
+
+  // repeated .masterworker.keyValuePair keysAndValues = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_keysandvalues_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_keysandvalues(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:masterworker.jobResultsInfo)
+  return target;
+}
+
+size_t jobResultsInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:masterworker.jobResultsInfo)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .masterworker.keyValuePair keysAndValues = 2;
+  total_size += 1UL * this->_internal_keysandvalues_size();
+  for (const auto& msg : this->keysandvalues_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .masterworker.workerJob initialJob = 1;
+  if (this->has_initialjob()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *initialjob_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void jobResultsInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:masterworker.jobResultsInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const jobResultsInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<jobResultsInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:masterworker.jobResultsInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:masterworker.jobResultsInfo)
+    MergeFrom(*source);
+  }
+}
+
+void jobResultsInfo::MergeFrom(const jobResultsInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:masterworker.jobResultsInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  keysandvalues_.MergeFrom(from.keysandvalues_);
+  if (from.has_initialjob()) {
+    _internal_mutable_initialjob()->::masterworker::workerJob::MergeFrom(from._internal_initialjob());
+  }
+}
+
+void jobResultsInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:masterworker.jobResultsInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void jobResultsInfo::CopyFrom(const jobResultsInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:masterworker.jobResultsInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool jobResultsInfo::IsInitialized() const {
+  return true;
+}
+
+void jobResultsInfo::InternalSwap(jobResultsInfo* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  keysandvalues_.InternalSwap(&other->keysandvalues_);
+  swap(initialjob_, other->initialjob_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata jobResultsInfo::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
 
 // ===================================================================
 
@@ -438,22 +1030,273 @@ void masterInfo::InternalSwap(masterInfo* other) {
 
 // ===================================================================
 
-void workerJob::InitAsDefaultInstance() {
+void reducerKeyValue::InitAsDefaultInstance() {
 }
-class workerJob::_Internal {
+class reducerKeyValue::_Internal {
  public:
 };
 
-workerJob::workerJob(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+reducerKeyValue::reducerKeyValue(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena),
-  reducefileslist_(arena) {
+  filespathlist_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:masterworker.reducerKeyValue)
+}
+reducerKeyValue::reducerKeyValue(const reducerKeyValue& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      filespathlist_(from.filespathlist_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_key().empty()) {
+    key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_key(),
+      GetArena());
+  }
+  // @@protoc_insertion_point(copy_constructor:masterworker.reducerKeyValue)
+}
+
+void reducerKeyValue::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_reducerKeyValue_masterworker_2eproto.base);
+  key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+reducerKeyValue::~reducerKeyValue() {
+  // @@protoc_insertion_point(destructor:masterworker.reducerKeyValue)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void reducerKeyValue::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void reducerKeyValue::ArenaDtor(void* object) {
+  reducerKeyValue* _this = reinterpret_cast< reducerKeyValue* >(object);
+  (void)_this;
+}
+void reducerKeyValue::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void reducerKeyValue::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const reducerKeyValue& reducerKeyValue::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_reducerKeyValue_masterworker_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void reducerKeyValue::Clear() {
+// @@protoc_insertion_point(message_clear_start:masterworker.reducerKeyValue)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  filespathlist_.Clear();
+  key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* reducerKeyValue::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string key = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_key();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "masterworker.reducerKeyValue.key"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string filesPathList = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_filespathlist();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "masterworker.reducerKeyValue.filesPathList"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* reducerKeyValue::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:masterworker.reducerKeyValue)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string key = 1;
+  if (this->key().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_key().data(), static_cast<int>(this->_internal_key().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "masterworker.reducerKeyValue.key");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_key(), target);
+  }
+
+  // repeated string filesPathList = 2;
+  for (int i = 0, n = this->_internal_filespathlist_size(); i < n; i++) {
+    const auto& s = this->_internal_filespathlist(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "masterworker.reducerKeyValue.filesPathList");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:masterworker.reducerKeyValue)
+  return target;
+}
+
+size_t reducerKeyValue::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:masterworker.reducerKeyValue)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string filesPathList = 2;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(filespathlist_.size());
+  for (int i = 0, n = filespathlist_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      filespathlist_.Get(i));
+  }
+
+  // string key = 1;
+  if (this->key().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_key());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void reducerKeyValue::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:masterworker.reducerKeyValue)
+  GOOGLE_DCHECK_NE(&from, this);
+  const reducerKeyValue* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<reducerKeyValue>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:masterworker.reducerKeyValue)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:masterworker.reducerKeyValue)
+    MergeFrom(*source);
+  }
+}
+
+void reducerKeyValue::MergeFrom(const reducerKeyValue& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:masterworker.reducerKeyValue)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  filespathlist_.MergeFrom(from.filespathlist_);
+  if (from.key().size() > 0) {
+    _internal_set_key(from._internal_key());
+  }
+}
+
+void reducerKeyValue::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:masterworker.reducerKeyValue)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void reducerKeyValue::CopyFrom(const reducerKeyValue& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:masterworker.reducerKeyValue)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool reducerKeyValue::IsInitialized() const {
+  return true;
+}
+
+void reducerKeyValue::InternalSwap(reducerKeyValue* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  filespathlist_.InternalSwap(&other->filespathlist_);
+  key_.Swap(&other->key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata reducerKeyValue::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void workerJob::InitAsDefaultInstance() {
+  ::masterworker::_workerJob_default_instance_._instance.get_mutable()->reducerinfo_ = const_cast< ::masterworker::reducerKeyValue*>(
+      ::masterworker::reducerKeyValue::internal_default_instance());
+}
+class workerJob::_Internal {
+ public:
+  static const ::masterworker::reducerKeyValue& reducerinfo(const workerJob* msg);
+};
+
+const ::masterworker::reducerKeyValue&
+workerJob::_Internal::reducerinfo(const workerJob* msg) {
+  return *msg->reducerinfo_;
+}
+workerJob::workerJob(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:masterworker.workerJob)
 }
 workerJob::workerJob(const workerJob& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      reducefileslist_(from.reducefileslist_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   mapfilepath_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_mapfilepath().empty()) {
@@ -465,6 +1308,11 @@ workerJob::workerJob(const workerJob& from)
     userid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_userid(),
       GetArena());
   }
+  if (from._internal_has_reducerinfo()) {
+    reducerinfo_ = new ::masterworker::reducerKeyValue(*from.reducerinfo_);
+  } else {
+    reducerinfo_ = nullptr;
+  }
   ::memcpy(&startidxmapper_, &from.startidxmapper_,
     static_cast<size_t>(reinterpret_cast<char*>(&jobid_) -
     reinterpret_cast<char*>(&startidxmapper_)) + sizeof(jobid_));
@@ -475,9 +1323,9 @@ void workerJob::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_workerJob_masterworker_2eproto.base);
   mapfilepath_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   userid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&startidxmapper_, 0, static_cast<size_t>(
+  ::memset(&reducerinfo_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&jobid_) -
-      reinterpret_cast<char*>(&startidxmapper_)) + sizeof(jobid_));
+      reinterpret_cast<char*>(&reducerinfo_)) + sizeof(jobid_));
 }
 
 workerJob::~workerJob() {
@@ -490,6 +1338,7 @@ void workerJob::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   mapfilepath_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   userid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete reducerinfo_;
 }
 
 void workerJob::ArenaDtor(void* object) {
@@ -513,9 +1362,12 @@ void workerJob::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  reducefileslist_.Clear();
   mapfilepath_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   userid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  if (GetArena() == nullptr && reducerinfo_ != nullptr) {
+    delete reducerinfo_;
+  }
+  reducerinfo_ = nullptr;
   ::memset(&startidxmapper_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&jobid_) -
       reinterpret_cast<char*>(&startidxmapper_)) + sizeof(jobid_));
@@ -530,18 +1382,11 @@ const char* workerJob::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // repeated string reduceFilesList = 1;
+      // .masterworker.reducerKeyValue reducerInfo = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            auto str = _internal_add_reducefileslist();
-            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "masterworker.workerJob.reduceFilesList"));
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+          ptr = ctx->ParseMessage(_internal_mutable_reducerinfo(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string mapFilePath = 2;
@@ -619,14 +1464,12 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated string reduceFilesList = 1;
-  for (int i = 0, n = this->_internal_reducefileslist_size(); i < n; i++) {
-    const auto& s = this->_internal_reducefileslist(i);
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      s.data(), static_cast<int>(s.length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "masterworker.workerJob.reduceFilesList");
-    target = stream->WriteString(1, s, target);
+  // .masterworker.reducerKeyValue reducerInfo = 1;
+  if (this->has_reducerinfo()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::reducerinfo(this), target, stream);
   }
 
   // string mapFilePath = 2;
@@ -690,14 +1533,6 @@ size_t workerJob::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated string reduceFilesList = 1;
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(reducefileslist_.size());
-  for (int i = 0, n = reducefileslist_.size(); i < n; i++) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      reducefileslist_.Get(i));
-  }
-
   // string mapFilePath = 2;
   if (this->mapfilepath().size() > 0) {
     total_size += 1 +
@@ -710,6 +1545,13 @@ size_t workerJob::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_userid());
+  }
+
+  // .masterworker.reducerKeyValue reducerInfo = 1;
+  if (this->has_reducerinfo()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *reducerinfo_);
   }
 
   // int32 startIdxMapper = 3;
@@ -770,12 +1612,14 @@ void workerJob::MergeFrom(const workerJob& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  reducefileslist_.MergeFrom(from.reducefileslist_);
   if (from.mapfilepath().size() > 0) {
     _internal_set_mapfilepath(from._internal_mapfilepath());
   }
   if (from.userid().size() > 0) {
     _internal_set_userid(from._internal_userid());
+  }
+  if (from.has_reducerinfo()) {
+    _internal_mutable_reducerinfo()->::masterworker::reducerKeyValue::MergeFrom(from._internal_reducerinfo());
   }
   if (from.startidxmapper() != 0) {
     _internal_set_startidxmapper(from._internal_startidxmapper());
@@ -812,15 +1656,14 @@ bool workerJob::IsInitialized() const {
 void workerJob::InternalSwap(workerJob* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  reducefileslist_.InternalSwap(&other->reducefileslist_);
   mapfilepath_.Swap(&other->mapfilepath_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   userid_.Swap(&other->userid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(workerJob, jobid_)
       + sizeof(workerJob::jobid_)
-      - PROTOBUF_FIELD_OFFSET(workerJob, startidxmapper_)>(
-          reinterpret_cast<char*>(&startidxmapper_),
-          reinterpret_cast<char*>(&other->startidxmapper_));
+      - PROTOBUF_FIELD_OFFSET(workerJob, reducerinfo_)>(
+          reinterpret_cast<char*>(&reducerinfo_),
+          reinterpret_cast<char*>(&other->reducerinfo_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata workerJob::GetMetadata() const {
@@ -1503,8 +2346,17 @@ void jobResult::InternalSwap(jobResult* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace masterworker
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::masterworker::keyValuePair* Arena::CreateMaybeMessage< ::masterworker::keyValuePair >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::masterworker::keyValuePair >(arena);
+}
+template<> PROTOBUF_NOINLINE ::masterworker::jobResultsInfo* Arena::CreateMaybeMessage< ::masterworker::jobResultsInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::masterworker::jobResultsInfo >(arena);
+}
 template<> PROTOBUF_NOINLINE ::masterworker::masterInfo* Arena::CreateMaybeMessage< ::masterworker::masterInfo >(Arena* arena) {
   return Arena::CreateMessageInternal< ::masterworker::masterInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::masterworker::reducerKeyValue* Arena::CreateMaybeMessage< ::masterworker::reducerKeyValue >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::masterworker::reducerKeyValue >(arena);
 }
 template<> PROTOBUF_NOINLINE ::masterworker::workerJob* Arena::CreateMaybeMessage< ::masterworker::workerJob >(Arena* arena) {
   return Arena::CreateMessageInternal< ::masterworker::workerJob >(arena);
