@@ -48,7 +48,7 @@ struct TableStruct_masterworker_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -59,9 +59,18 @@ namespace masterworker {
 class jobResult;
 class jobResultDefaultTypeInternal;
 extern jobResultDefaultTypeInternal _jobResult_default_instance_;
+class jobResultsInfo;
+class jobResultsInfoDefaultTypeInternal;
+extern jobResultsInfoDefaultTypeInternal _jobResultsInfo_default_instance_;
+class keyValuePair;
+class keyValuePairDefaultTypeInternal;
+extern keyValuePairDefaultTypeInternal _keyValuePair_default_instance_;
 class masterInfo;
 class masterInfoDefaultTypeInternal;
 extern masterInfoDefaultTypeInternal _masterInfo_default_instance_;
+class reducerKeyValue;
+class reducerKeyValueDefaultTypeInternal;
+extern reducerKeyValueDefaultTypeInternal _reducerKeyValue_default_instance_;
 class workerInfo;
 class workerInfoDefaultTypeInternal;
 extern workerInfoDefaultTypeInternal _workerInfo_default_instance_;
@@ -74,7 +83,10 @@ extern workerStatusDefaultTypeInternal _workerStatus_default_instance_;
 }  // namespace masterworker
 PROTOBUF_NAMESPACE_OPEN
 template<> ::masterworker::jobResult* Arena::CreateMaybeMessage<::masterworker::jobResult>(Arena*);
+template<> ::masterworker::jobResultsInfo* Arena::CreateMaybeMessage<::masterworker::jobResultsInfo>(Arena*);
+template<> ::masterworker::keyValuePair* Arena::CreateMaybeMessage<::masterworker::keyValuePair>(Arena*);
 template<> ::masterworker::masterInfo* Arena::CreateMaybeMessage<::masterworker::masterInfo>(Arena*);
+template<> ::masterworker::reducerKeyValue* Arena::CreateMaybeMessage<::masterworker::reducerKeyValue>(Arena*);
 template<> ::masterworker::workerInfo* Arena::CreateMaybeMessage<::masterworker::workerInfo>(Arena*);
 template<> ::masterworker::workerJob* Arena::CreateMaybeMessage<::masterworker::workerJob>(Arena*);
 template<> ::masterworker::workerStatus* Arena::CreateMaybeMessage<::masterworker::workerStatus>(Arena*);
@@ -107,6 +119,334 @@ inline bool workerJob_jobTypeEnum_Parse(
     workerJob_jobTypeEnum_descriptor(), name, value);
 }
 // ===================================================================
+
+class keyValuePair PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.keyValuePair) */ {
+ public:
+  inline keyValuePair() : keyValuePair(nullptr) {}
+  virtual ~keyValuePair();
+
+  keyValuePair(const keyValuePair& from);
+  keyValuePair(keyValuePair&& from) noexcept
+    : keyValuePair() {
+    *this = ::std::move(from);
+  }
+
+  inline keyValuePair& operator=(const keyValuePair& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline keyValuePair& operator=(keyValuePair&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const keyValuePair& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const keyValuePair* internal_default_instance() {
+    return reinterpret_cast<const keyValuePair*>(
+               &_keyValuePair_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(keyValuePair& a, keyValuePair& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(keyValuePair* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(keyValuePair* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline keyValuePair* New() const final {
+    return CreateMaybeMessage<keyValuePair>(nullptr);
+  }
+
+  keyValuePair* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<keyValuePair>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const keyValuePair& from);
+  void MergeFrom(const keyValuePair& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(keyValuePair* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "masterworker.keyValuePair";
+  }
+  protected:
+  explicit keyValuePair(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_masterworker_2eproto);
+    return ::descriptor_table_masterworker_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kKeyFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // string key = 1;
+  void clear_key();
+  const std::string& key() const;
+  void set_key(const std::string& value);
+  void set_key(std::string&& value);
+  void set_key(const char* value);
+  void set_key(const char* value, size_t size);
+  std::string* mutable_key();
+  std::string* release_key();
+  void set_allocated_key(std::string* key);
+  private:
+  const std::string& _internal_key() const;
+  void _internal_set_key(const std::string& value);
+  std::string* _internal_mutable_key();
+  public:
+
+  // string value = 2;
+  void clear_value();
+  const std::string& value() const;
+  void set_value(const std::string& value);
+  void set_value(std::string&& value);
+  void set_value(const char* value);
+  void set_value(const char* value, size_t size);
+  std::string* mutable_value();
+  std::string* release_value();
+  void set_allocated_value(std::string* value);
+  private:
+  const std::string& _internal_value() const;
+  void _internal_set_value(const std::string& value);
+  std::string* _internal_mutable_value();
+  public:
+
+  // @@protoc_insertion_point(class_scope:masterworker.keyValuePair)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_masterworker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class jobResultsInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.jobResultsInfo) */ {
+ public:
+  inline jobResultsInfo() : jobResultsInfo(nullptr) {}
+  virtual ~jobResultsInfo();
+
+  jobResultsInfo(const jobResultsInfo& from);
+  jobResultsInfo(jobResultsInfo&& from) noexcept
+    : jobResultsInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline jobResultsInfo& operator=(const jobResultsInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline jobResultsInfo& operator=(jobResultsInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const jobResultsInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const jobResultsInfo* internal_default_instance() {
+    return reinterpret_cast<const jobResultsInfo*>(
+               &_jobResultsInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(jobResultsInfo& a, jobResultsInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(jobResultsInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(jobResultsInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline jobResultsInfo* New() const final {
+    return CreateMaybeMessage<jobResultsInfo>(nullptr);
+  }
+
+  jobResultsInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<jobResultsInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const jobResultsInfo& from);
+  void MergeFrom(const jobResultsInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(jobResultsInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "masterworker.jobResultsInfo";
+  }
+  protected:
+  explicit jobResultsInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_masterworker_2eproto);
+    return ::descriptor_table_masterworker_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kKeysAndValuesFieldNumber = 2,
+    kInitialJobFieldNumber = 1,
+  };
+  // repeated .masterworker.keyValuePair keysAndValues = 2;
+  int keysandvalues_size() const;
+  private:
+  int _internal_keysandvalues_size() const;
+  public:
+  void clear_keysandvalues();
+  ::masterworker::keyValuePair* mutable_keysandvalues(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::keyValuePair >*
+      mutable_keysandvalues();
+  private:
+  const ::masterworker::keyValuePair& _internal_keysandvalues(int index) const;
+  ::masterworker::keyValuePair* _internal_add_keysandvalues();
+  public:
+  const ::masterworker::keyValuePair& keysandvalues(int index) const;
+  ::masterworker::keyValuePair* add_keysandvalues();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::keyValuePair >&
+      keysandvalues() const;
+
+  // .masterworker.workerJob initialJob = 1;
+  bool has_initialjob() const;
+  private:
+  bool _internal_has_initialjob() const;
+  public:
+  void clear_initialjob();
+  const ::masterworker::workerJob& initialjob() const;
+  ::masterworker::workerJob* release_initialjob();
+  ::masterworker::workerJob* mutable_initialjob();
+  void set_allocated_initialjob(::masterworker::workerJob* initialjob);
+  private:
+  const ::masterworker::workerJob& _internal_initialjob() const;
+  ::masterworker::workerJob* _internal_mutable_initialjob();
+  public:
+  void unsafe_arena_set_allocated_initialjob(
+      ::masterworker::workerJob* initialjob);
+  ::masterworker::workerJob* unsafe_arena_release_initialjob();
+
+  // @@protoc_insertion_point(class_scope:masterworker.jobResultsInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::keyValuePair > keysandvalues_;
+  ::masterworker::workerJob* initialjob_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_masterworker_2eproto;
+};
+// -------------------------------------------------------------------
 
 class masterInfo PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.masterInfo) */ {
@@ -150,7 +490,7 @@ class masterInfo PROTOBUF_FINAL :
                &_masterInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(masterInfo& a, masterInfo& b) {
     a.Swap(&b);
@@ -252,6 +592,176 @@ class masterInfo PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class reducerKeyValue PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.reducerKeyValue) */ {
+ public:
+  inline reducerKeyValue() : reducerKeyValue(nullptr) {}
+  virtual ~reducerKeyValue();
+
+  reducerKeyValue(const reducerKeyValue& from);
+  reducerKeyValue(reducerKeyValue&& from) noexcept
+    : reducerKeyValue() {
+    *this = ::std::move(from);
+  }
+
+  inline reducerKeyValue& operator=(const reducerKeyValue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline reducerKeyValue& operator=(reducerKeyValue&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const reducerKeyValue& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const reducerKeyValue* internal_default_instance() {
+    return reinterpret_cast<const reducerKeyValue*>(
+               &_reducerKeyValue_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(reducerKeyValue& a, reducerKeyValue& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(reducerKeyValue* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(reducerKeyValue* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline reducerKeyValue* New() const final {
+    return CreateMaybeMessage<reducerKeyValue>(nullptr);
+  }
+
+  reducerKeyValue* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<reducerKeyValue>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const reducerKeyValue& from);
+  void MergeFrom(const reducerKeyValue& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(reducerKeyValue* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "masterworker.reducerKeyValue";
+  }
+  protected:
+  explicit reducerKeyValue(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_masterworker_2eproto);
+    return ::descriptor_table_masterworker_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFilesPathListFieldNumber = 2,
+    kKeyFieldNumber = 1,
+  };
+  // repeated string filesPathList = 2;
+  int filespathlist_size() const;
+  private:
+  int _internal_filespathlist_size() const;
+  public:
+  void clear_filespathlist();
+  const std::string& filespathlist(int index) const;
+  std::string* mutable_filespathlist(int index);
+  void set_filespathlist(int index, const std::string& value);
+  void set_filespathlist(int index, std::string&& value);
+  void set_filespathlist(int index, const char* value);
+  void set_filespathlist(int index, const char* value, size_t size);
+  std::string* add_filespathlist();
+  void add_filespathlist(const std::string& value);
+  void add_filespathlist(std::string&& value);
+  void add_filespathlist(const char* value);
+  void add_filespathlist(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& filespathlist() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_filespathlist();
+  private:
+  const std::string& _internal_filespathlist(int index) const;
+  std::string* _internal_add_filespathlist();
+  public:
+
+  // string key = 1;
+  void clear_key();
+  const std::string& key() const;
+  void set_key(const std::string& value);
+  void set_key(std::string&& value);
+  void set_key(const char* value);
+  void set_key(const char* value, size_t size);
+  std::string* mutable_key();
+  std::string* release_key();
+  void set_allocated_key(std::string* key);
+  private:
+  const std::string& _internal_key() const;
+  void _internal_set_key(const std::string& value);
+  std::string* _internal_mutable_key();
+  public:
+
+  // @@protoc_insertion_point(class_scope:masterworker.reducerKeyValue)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> filespathlist_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_masterworker_2eproto;
+};
+// -------------------------------------------------------------------
+
 class workerJob PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.workerJob) */ {
  public:
@@ -294,7 +804,7 @@ class workerJob PROTOBUF_FINAL :
                &_workerJob_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    4;
 
   friend void swap(workerJob& a, workerJob& b) {
     a.Swap(&b);
@@ -395,38 +905,14 @@ class workerJob PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kReduceFilesListFieldNumber = 1,
     kMapFilePathFieldNumber = 2,
     kUserIDFieldNumber = 6,
+    kReducerInfoFieldNumber = 1,
     kStartIdxMapperFieldNumber = 3,
     kEndIdxMapperFieldNumber = 4,
     kJobTypeFieldNumber = 5,
     kJobIDFieldNumber = 7,
   };
-  // repeated string reduceFilesList = 1;
-  int reducefileslist_size() const;
-  private:
-  int _internal_reducefileslist_size() const;
-  public:
-  void clear_reducefileslist();
-  const std::string& reducefileslist(int index) const;
-  std::string* mutable_reducefileslist(int index);
-  void set_reducefileslist(int index, const std::string& value);
-  void set_reducefileslist(int index, std::string&& value);
-  void set_reducefileslist(int index, const char* value);
-  void set_reducefileslist(int index, const char* value, size_t size);
-  std::string* add_reducefileslist();
-  void add_reducefileslist(const std::string& value);
-  void add_reducefileslist(std::string&& value);
-  void add_reducefileslist(const char* value);
-  void add_reducefileslist(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& reducefileslist() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_reducefileslist();
-  private:
-  const std::string& _internal_reducefileslist(int index) const;
-  std::string* _internal_add_reducefileslist();
-  public:
-
   // string mapFilePath = 2;
   void clear_mapfilepath();
   const std::string& mapfilepath() const;
@@ -458,6 +944,24 @@ class workerJob PROTOBUF_FINAL :
   void _internal_set_userid(const std::string& value);
   std::string* _internal_mutable_userid();
   public:
+
+  // .masterworker.reducerKeyValue reducerInfo = 1;
+  bool has_reducerinfo() const;
+  private:
+  bool _internal_has_reducerinfo() const;
+  public:
+  void clear_reducerinfo();
+  const ::masterworker::reducerKeyValue& reducerinfo() const;
+  ::masterworker::reducerKeyValue* release_reducerinfo();
+  ::masterworker::reducerKeyValue* mutable_reducerinfo();
+  void set_allocated_reducerinfo(::masterworker::reducerKeyValue* reducerinfo);
+  private:
+  const ::masterworker::reducerKeyValue& _internal_reducerinfo() const;
+  ::masterworker::reducerKeyValue* _internal_mutable_reducerinfo();
+  public:
+  void unsafe_arena_set_allocated_reducerinfo(
+      ::masterworker::reducerKeyValue* reducerinfo);
+  ::masterworker::reducerKeyValue* unsafe_arena_release_reducerinfo();
 
   // int32 startIdxMapper = 3;
   void clear_startidxmapper();
@@ -502,9 +1006,9 @@ class workerJob PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> reducefileslist_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mapfilepath_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
+  ::masterworker::reducerKeyValue* reducerinfo_;
   ::PROTOBUF_NAMESPACE_ID::int32 startidxmapper_;
   ::PROTOBUF_NAMESPACE_ID::int32 endidxmapper_;
   int jobtype_;
@@ -556,7 +1060,7 @@ class workerInfo PROTOBUF_FINAL :
                &_workerInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    5;
 
   friend void swap(workerInfo& a, workerInfo& b) {
     a.Swap(&b);
@@ -700,7 +1204,7 @@ class workerStatus PROTOBUF_FINAL :
                &_workerStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    6;
 
   friend void swap(workerStatus& a, workerStatus& b) {
     a.Swap(&b);
@@ -848,7 +1352,7 @@ class jobResult PROTOBUF_FINAL :
                &_jobResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    7;
 
   friend void swap(jobResult& a, jobResult& b) {
     a.Swap(&b);
@@ -968,6 +1472,260 @@ class jobResult PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// keyValuePair
+
+// string key = 1;
+inline void keyValuePair::clear_key() {
+  key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& keyValuePair::key() const {
+  // @@protoc_insertion_point(field_get:masterworker.keyValuePair.key)
+  return _internal_key();
+}
+inline void keyValuePair::set_key(const std::string& value) {
+  _internal_set_key(value);
+  // @@protoc_insertion_point(field_set:masterworker.keyValuePair.key)
+}
+inline std::string* keyValuePair::mutable_key() {
+  // @@protoc_insertion_point(field_mutable:masterworker.keyValuePair.key)
+  return _internal_mutable_key();
+}
+inline const std::string& keyValuePair::_internal_key() const {
+  return key_.Get();
+}
+inline void keyValuePair::_internal_set_key(const std::string& value) {
+  
+  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void keyValuePair::set_key(std::string&& value) {
+  
+  key_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.keyValuePair.key)
+}
+inline void keyValuePair::set_key(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:masterworker.keyValuePair.key)
+}
+inline void keyValuePair::set_key(const char* value,
+    size_t size) {
+  
+  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:masterworker.keyValuePair.key)
+}
+inline std::string* keyValuePair::_internal_mutable_key() {
+  
+  return key_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* keyValuePair::release_key() {
+  // @@protoc_insertion_point(field_release:masterworker.keyValuePair.key)
+  return key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void keyValuePair::set_allocated_key(std::string* key) {
+  if (key != nullptr) {
+    
+  } else {
+    
+  }
+  key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), key,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:masterworker.keyValuePair.key)
+}
+
+// string value = 2;
+inline void keyValuePair::clear_value() {
+  value_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& keyValuePair::value() const {
+  // @@protoc_insertion_point(field_get:masterworker.keyValuePair.value)
+  return _internal_value();
+}
+inline void keyValuePair::set_value(const std::string& value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:masterworker.keyValuePair.value)
+}
+inline std::string* keyValuePair::mutable_value() {
+  // @@protoc_insertion_point(field_mutable:masterworker.keyValuePair.value)
+  return _internal_mutable_value();
+}
+inline const std::string& keyValuePair::_internal_value() const {
+  return value_.Get();
+}
+inline void keyValuePair::_internal_set_value(const std::string& value) {
+  
+  value_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void keyValuePair::set_value(std::string&& value) {
+  
+  value_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.keyValuePair.value)
+}
+inline void keyValuePair::set_value(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  value_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:masterworker.keyValuePair.value)
+}
+inline void keyValuePair::set_value(const char* value,
+    size_t size) {
+  
+  value_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:masterworker.keyValuePair.value)
+}
+inline std::string* keyValuePair::_internal_mutable_value() {
+  
+  return value_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* keyValuePair::release_value() {
+  // @@protoc_insertion_point(field_release:masterworker.keyValuePair.value)
+  return value_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void keyValuePair::set_allocated_value(std::string* value) {
+  if (value != nullptr) {
+    
+  } else {
+    
+  }
+  value_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:masterworker.keyValuePair.value)
+}
+
+// -------------------------------------------------------------------
+
+// jobResultsInfo
+
+// .masterworker.workerJob initialJob = 1;
+inline bool jobResultsInfo::_internal_has_initialjob() const {
+  return this != internal_default_instance() && initialjob_ != nullptr;
+}
+inline bool jobResultsInfo::has_initialjob() const {
+  return _internal_has_initialjob();
+}
+inline void jobResultsInfo::clear_initialjob() {
+  if (GetArena() == nullptr && initialjob_ != nullptr) {
+    delete initialjob_;
+  }
+  initialjob_ = nullptr;
+}
+inline const ::masterworker::workerJob& jobResultsInfo::_internal_initialjob() const {
+  const ::masterworker::workerJob* p = initialjob_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::masterworker::workerJob*>(
+      &::masterworker::_workerJob_default_instance_);
+}
+inline const ::masterworker::workerJob& jobResultsInfo::initialjob() const {
+  // @@protoc_insertion_point(field_get:masterworker.jobResultsInfo.initialJob)
+  return _internal_initialjob();
+}
+inline void jobResultsInfo::unsafe_arena_set_allocated_initialjob(
+    ::masterworker::workerJob* initialjob) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(initialjob_);
+  }
+  initialjob_ = initialjob;
+  if (initialjob) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:masterworker.jobResultsInfo.initialJob)
+}
+inline ::masterworker::workerJob* jobResultsInfo::release_initialjob() {
+  
+  ::masterworker::workerJob* temp = initialjob_;
+  initialjob_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::masterworker::workerJob* jobResultsInfo::unsafe_arena_release_initialjob() {
+  // @@protoc_insertion_point(field_release:masterworker.jobResultsInfo.initialJob)
+  
+  ::masterworker::workerJob* temp = initialjob_;
+  initialjob_ = nullptr;
+  return temp;
+}
+inline ::masterworker::workerJob* jobResultsInfo::_internal_mutable_initialjob() {
+  
+  if (initialjob_ == nullptr) {
+    auto* p = CreateMaybeMessage<::masterworker::workerJob>(GetArena());
+    initialjob_ = p;
+  }
+  return initialjob_;
+}
+inline ::masterworker::workerJob* jobResultsInfo::mutable_initialjob() {
+  // @@protoc_insertion_point(field_mutable:masterworker.jobResultsInfo.initialJob)
+  return _internal_mutable_initialjob();
+}
+inline void jobResultsInfo::set_allocated_initialjob(::masterworker::workerJob* initialjob) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete initialjob_;
+  }
+  if (initialjob) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(initialjob);
+    if (message_arena != submessage_arena) {
+      initialjob = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, initialjob, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  initialjob_ = initialjob;
+  // @@protoc_insertion_point(field_set_allocated:masterworker.jobResultsInfo.initialJob)
+}
+
+// repeated .masterworker.keyValuePair keysAndValues = 2;
+inline int jobResultsInfo::_internal_keysandvalues_size() const {
+  return keysandvalues_.size();
+}
+inline int jobResultsInfo::keysandvalues_size() const {
+  return _internal_keysandvalues_size();
+}
+inline void jobResultsInfo::clear_keysandvalues() {
+  keysandvalues_.Clear();
+}
+inline ::masterworker::keyValuePair* jobResultsInfo::mutable_keysandvalues(int index) {
+  // @@protoc_insertion_point(field_mutable:masterworker.jobResultsInfo.keysAndValues)
+  return keysandvalues_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::keyValuePair >*
+jobResultsInfo::mutable_keysandvalues() {
+  // @@protoc_insertion_point(field_mutable_list:masterworker.jobResultsInfo.keysAndValues)
+  return &keysandvalues_;
+}
+inline const ::masterworker::keyValuePair& jobResultsInfo::_internal_keysandvalues(int index) const {
+  return keysandvalues_.Get(index);
+}
+inline const ::masterworker::keyValuePair& jobResultsInfo::keysandvalues(int index) const {
+  // @@protoc_insertion_point(field_get:masterworker.jobResultsInfo.keysAndValues)
+  return _internal_keysandvalues(index);
+}
+inline ::masterworker::keyValuePair* jobResultsInfo::_internal_add_keysandvalues() {
+  return keysandvalues_.Add();
+}
+inline ::masterworker::keyValuePair* jobResultsInfo::add_keysandvalues() {
+  // @@protoc_insertion_point(field_add:masterworker.jobResultsInfo.keysAndValues)
+  return _internal_add_keysandvalues();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::keyValuePair >&
+jobResultsInfo::keysandvalues() const {
+  // @@protoc_insertion_point(field_list:masterworker.jobResultsInfo.keysAndValues)
+  return keysandvalues_;
+}
+
+// -------------------------------------------------------------------
+
 // masterInfo
 
 // string ipAddress = 1;
@@ -1034,80 +1792,229 @@ inline void masterInfo::set_allocated_ipaddress(std::string* ipaddress) {
 
 // -------------------------------------------------------------------
 
-// workerJob
+// reducerKeyValue
 
-// repeated string reduceFilesList = 1;
-inline int workerJob::_internal_reducefileslist_size() const {
-  return reducefileslist_.size();
+// string key = 1;
+inline void reducerKeyValue::clear_key() {
+  key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline int workerJob::reducefileslist_size() const {
-  return _internal_reducefileslist_size();
+inline const std::string& reducerKeyValue::key() const {
+  // @@protoc_insertion_point(field_get:masterworker.reducerKeyValue.key)
+  return _internal_key();
 }
-inline void workerJob::clear_reducefileslist() {
-  reducefileslist_.Clear();
+inline void reducerKeyValue::set_key(const std::string& value) {
+  _internal_set_key(value);
+  // @@protoc_insertion_point(field_set:masterworker.reducerKeyValue.key)
 }
-inline std::string* workerJob::add_reducefileslist() {
-  // @@protoc_insertion_point(field_add_mutable:masterworker.workerJob.reduceFilesList)
-  return _internal_add_reducefileslist();
+inline std::string* reducerKeyValue::mutable_key() {
+  // @@protoc_insertion_point(field_mutable:masterworker.reducerKeyValue.key)
+  return _internal_mutable_key();
 }
-inline const std::string& workerJob::_internal_reducefileslist(int index) const {
-  return reducefileslist_.Get(index);
+inline const std::string& reducerKeyValue::_internal_key() const {
+  return key_.Get();
 }
-inline const std::string& workerJob::reducefileslist(int index) const {
-  // @@protoc_insertion_point(field_get:masterworker.workerJob.reduceFilesList)
-  return _internal_reducefileslist(index);
+inline void reducerKeyValue::_internal_set_key(const std::string& value) {
+  
+  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline std::string* workerJob::mutable_reducefileslist(int index) {
-  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.reduceFilesList)
-  return reducefileslist_.Mutable(index);
+inline void reducerKeyValue::set_key(std::string&& value) {
+  
+  key_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.reducerKeyValue.key)
 }
-inline void workerJob::set_reducefileslist(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:masterworker.workerJob.reduceFilesList)
-  reducefileslist_.Mutable(index)->assign(value);
-}
-inline void workerJob::set_reducefileslist(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:masterworker.workerJob.reduceFilesList)
-  reducefileslist_.Mutable(index)->assign(std::move(value));
-}
-inline void workerJob::set_reducefileslist(int index, const char* value) {
+inline void reducerKeyValue::set_key(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
-  reducefileslist_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:masterworker.workerJob.reduceFilesList)
+  
+  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:masterworker.reducerKeyValue.key)
 }
-inline void workerJob::set_reducefileslist(int index, const char* value, size_t size) {
-  reducefileslist_.Mutable(index)->assign(
+inline void reducerKeyValue::set_key(const char* value,
+    size_t size) {
+  
+  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:masterworker.reducerKeyValue.key)
+}
+inline std::string* reducerKeyValue::_internal_mutable_key() {
+  
+  return key_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* reducerKeyValue::release_key() {
+  // @@protoc_insertion_point(field_release:masterworker.reducerKeyValue.key)
+  return key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void reducerKeyValue::set_allocated_key(std::string* key) {
+  if (key != nullptr) {
+    
+  } else {
+    
+  }
+  key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), key,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:masterworker.reducerKeyValue.key)
+}
+
+// repeated string filesPathList = 2;
+inline int reducerKeyValue::_internal_filespathlist_size() const {
+  return filespathlist_.size();
+}
+inline int reducerKeyValue::filespathlist_size() const {
+  return _internal_filespathlist_size();
+}
+inline void reducerKeyValue::clear_filespathlist() {
+  filespathlist_.Clear();
+}
+inline std::string* reducerKeyValue::add_filespathlist() {
+  // @@protoc_insertion_point(field_add_mutable:masterworker.reducerKeyValue.filesPathList)
+  return _internal_add_filespathlist();
+}
+inline const std::string& reducerKeyValue::_internal_filespathlist(int index) const {
+  return filespathlist_.Get(index);
+}
+inline const std::string& reducerKeyValue::filespathlist(int index) const {
+  // @@protoc_insertion_point(field_get:masterworker.reducerKeyValue.filesPathList)
+  return _internal_filespathlist(index);
+}
+inline std::string* reducerKeyValue::mutable_filespathlist(int index) {
+  // @@protoc_insertion_point(field_mutable:masterworker.reducerKeyValue.filesPathList)
+  return filespathlist_.Mutable(index);
+}
+inline void reducerKeyValue::set_filespathlist(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:masterworker.reducerKeyValue.filesPathList)
+  filespathlist_.Mutable(index)->assign(value);
+}
+inline void reducerKeyValue::set_filespathlist(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:masterworker.reducerKeyValue.filesPathList)
+  filespathlist_.Mutable(index)->assign(std::move(value));
+}
+inline void reducerKeyValue::set_filespathlist(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  filespathlist_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:masterworker.reducerKeyValue.filesPathList)
+}
+inline void reducerKeyValue::set_filespathlist(int index, const char* value, size_t size) {
+  filespathlist_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:masterworker.workerJob.reduceFilesList)
+  // @@protoc_insertion_point(field_set_pointer:masterworker.reducerKeyValue.filesPathList)
 }
-inline std::string* workerJob::_internal_add_reducefileslist() {
-  return reducefileslist_.Add();
+inline std::string* reducerKeyValue::_internal_add_filespathlist() {
+  return filespathlist_.Add();
 }
-inline void workerJob::add_reducefileslist(const std::string& value) {
-  reducefileslist_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:masterworker.workerJob.reduceFilesList)
+inline void reducerKeyValue::add_filespathlist(const std::string& value) {
+  filespathlist_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:masterworker.reducerKeyValue.filesPathList)
 }
-inline void workerJob::add_reducefileslist(std::string&& value) {
-  reducefileslist_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:masterworker.workerJob.reduceFilesList)
+inline void reducerKeyValue::add_filespathlist(std::string&& value) {
+  filespathlist_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:masterworker.reducerKeyValue.filesPathList)
 }
-inline void workerJob::add_reducefileslist(const char* value) {
+inline void reducerKeyValue::add_filespathlist(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
-  reducefileslist_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:masterworker.workerJob.reduceFilesList)
+  filespathlist_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:masterworker.reducerKeyValue.filesPathList)
 }
-inline void workerJob::add_reducefileslist(const char* value, size_t size) {
-  reducefileslist_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:masterworker.workerJob.reduceFilesList)
+inline void reducerKeyValue::add_filespathlist(const char* value, size_t size) {
+  filespathlist_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:masterworker.reducerKeyValue.filesPathList)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-workerJob::reducefileslist() const {
-  // @@protoc_insertion_point(field_list:masterworker.workerJob.reduceFilesList)
-  return reducefileslist_;
+reducerKeyValue::filespathlist() const {
+  // @@protoc_insertion_point(field_list:masterworker.reducerKeyValue.filesPathList)
+  return filespathlist_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-workerJob::mutable_reducefileslist() {
-  // @@protoc_insertion_point(field_mutable_list:masterworker.workerJob.reduceFilesList)
-  return &reducefileslist_;
+reducerKeyValue::mutable_filespathlist() {
+  // @@protoc_insertion_point(field_mutable_list:masterworker.reducerKeyValue.filesPathList)
+  return &filespathlist_;
+}
+
+// -------------------------------------------------------------------
+
+// workerJob
+
+// .masterworker.reducerKeyValue reducerInfo = 1;
+inline bool workerJob::_internal_has_reducerinfo() const {
+  return this != internal_default_instance() && reducerinfo_ != nullptr;
+}
+inline bool workerJob::has_reducerinfo() const {
+  return _internal_has_reducerinfo();
+}
+inline void workerJob::clear_reducerinfo() {
+  if (GetArena() == nullptr && reducerinfo_ != nullptr) {
+    delete reducerinfo_;
+  }
+  reducerinfo_ = nullptr;
+}
+inline const ::masterworker::reducerKeyValue& workerJob::_internal_reducerinfo() const {
+  const ::masterworker::reducerKeyValue* p = reducerinfo_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::masterworker::reducerKeyValue*>(
+      &::masterworker::_reducerKeyValue_default_instance_);
+}
+inline const ::masterworker::reducerKeyValue& workerJob::reducerinfo() const {
+  // @@protoc_insertion_point(field_get:masterworker.workerJob.reducerInfo)
+  return _internal_reducerinfo();
+}
+inline void workerJob::unsafe_arena_set_allocated_reducerinfo(
+    ::masterworker::reducerKeyValue* reducerinfo) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(reducerinfo_);
+  }
+  reducerinfo_ = reducerinfo;
+  if (reducerinfo) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:masterworker.workerJob.reducerInfo)
+}
+inline ::masterworker::reducerKeyValue* workerJob::release_reducerinfo() {
+  
+  ::masterworker::reducerKeyValue* temp = reducerinfo_;
+  reducerinfo_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::masterworker::reducerKeyValue* workerJob::unsafe_arena_release_reducerinfo() {
+  // @@protoc_insertion_point(field_release:masterworker.workerJob.reducerInfo)
+  
+  ::masterworker::reducerKeyValue* temp = reducerinfo_;
+  reducerinfo_ = nullptr;
+  return temp;
+}
+inline ::masterworker::reducerKeyValue* workerJob::_internal_mutable_reducerinfo() {
+  
+  if (reducerinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::masterworker::reducerKeyValue>(GetArena());
+    reducerinfo_ = p;
+  }
+  return reducerinfo_;
+}
+inline ::masterworker::reducerKeyValue* workerJob::mutable_reducerinfo() {
+  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.reducerInfo)
+  return _internal_mutable_reducerinfo();
+}
+inline void workerJob::set_allocated_reducerinfo(::masterworker::reducerKeyValue* reducerinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reducerinfo_;
+  }
+  if (reducerinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(reducerinfo);
+    if (message_arena != submessage_arena) {
+      reducerinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, reducerinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  reducerinfo_ = reducerinfo;
+  // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.reducerInfo)
 }
 
 // string mapFilePath = 2;
@@ -1513,6 +2420,12 @@ inline void jobResult::set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
