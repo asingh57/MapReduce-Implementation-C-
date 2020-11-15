@@ -62,12 +62,12 @@ extern jobResultsInfoDefaultTypeInternal _jobResultsInfo_default_instance_;
 class keyValuePair;
 class keyValuePairDefaultTypeInternal;
 extern keyValuePairDefaultTypeInternal _keyValuePair_default_instance_;
+class mapFilePortion;
+class mapFilePortionDefaultTypeInternal;
+extern mapFilePortionDefaultTypeInternal _mapFilePortion_default_instance_;
 class masterInfo;
 class masterInfoDefaultTypeInternal;
 extern masterInfoDefaultTypeInternal _masterInfo_default_instance_;
-class reducerKeyValue;
-class reducerKeyValueDefaultTypeInternal;
-extern reducerKeyValueDefaultTypeInternal _reducerKeyValue_default_instance_;
 class workerInfo;
 class workerInfoDefaultTypeInternal;
 extern workerInfoDefaultTypeInternal _workerInfo_default_instance_;
@@ -81,8 +81,8 @@ extern workerStatusDefaultTypeInternal _workerStatus_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::masterworker::jobResultsInfo* Arena::CreateMaybeMessage<::masterworker::jobResultsInfo>(Arena*);
 template<> ::masterworker::keyValuePair* Arena::CreateMaybeMessage<::masterworker::keyValuePair>(Arena*);
+template<> ::masterworker::mapFilePortion* Arena::CreateMaybeMessage<::masterworker::mapFilePortion>(Arena*);
 template<> ::masterworker::masterInfo* Arena::CreateMaybeMessage<::masterworker::masterInfo>(Arena*);
-template<> ::masterworker::reducerKeyValue* Arena::CreateMaybeMessage<::masterworker::reducerKeyValue>(Arena*);
 template<> ::masterworker::workerInfo* Arena::CreateMaybeMessage<::masterworker::workerInfo>(Arena*);
 template<> ::masterworker::workerJob* Arena::CreateMaybeMessage<::masterworker::workerJob>(Arena*);
 template<> ::masterworker::workerStatus* Arena::CreateMaybeMessage<::masterworker::workerStatus>(Arena*);
@@ -391,10 +391,9 @@ class jobResultsInfo PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kKeysAndValuesFieldNumber = 2,
-    kInitialJobFieldNumber = 1,
+    kKeysAndValuesFieldNumber = 1,
   };
-  // repeated .masterworker.keyValuePair keysAndValues = 2;
+  // repeated .masterworker.keyValuePair keysAndValues = 1;
   int keysandvalues_size() const;
   private:
   int _internal_keysandvalues_size() const;
@@ -412,24 +411,6 @@ class jobResultsInfo PROTOBUF_FINAL :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::keyValuePair >&
       keysandvalues() const;
 
-  // .masterworker.workerJob initialJob = 1;
-  bool has_initialjob() const;
-  private:
-  bool _internal_has_initialjob() const;
-  public:
-  void clear_initialjob();
-  const ::masterworker::workerJob& initialjob() const;
-  ::masterworker::workerJob* release_initialjob();
-  ::masterworker::workerJob* mutable_initialjob();
-  void set_allocated_initialjob(::masterworker::workerJob* initialjob);
-  private:
-  const ::masterworker::workerJob& _internal_initialjob() const;
-  ::masterworker::workerJob* _internal_mutable_initialjob();
-  public:
-  void unsafe_arena_set_allocated_initialjob(
-      ::masterworker::workerJob* initialjob);
-  ::masterworker::workerJob* unsafe_arena_release_initialjob();
-
   // @@protoc_insertion_point(class_scope:masterworker.jobResultsInfo)
  private:
   class _Internal;
@@ -438,7 +419,6 @@ class jobResultsInfo PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::keyValuePair > keysandvalues_;
-  ::masterworker::workerJob* initialjob_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -588,23 +568,23 @@ class masterInfo PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
-class reducerKeyValue PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.reducerKeyValue) */ {
+class mapFilePortion PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:masterworker.mapFilePortion) */ {
  public:
-  inline reducerKeyValue() : reducerKeyValue(nullptr) {}
-  virtual ~reducerKeyValue();
+  inline mapFilePortion() : mapFilePortion(nullptr) {}
+  virtual ~mapFilePortion();
 
-  reducerKeyValue(const reducerKeyValue& from);
-  reducerKeyValue(reducerKeyValue&& from) noexcept
-    : reducerKeyValue() {
+  mapFilePortion(const mapFilePortion& from);
+  mapFilePortion(mapFilePortion&& from) noexcept
+    : mapFilePortion() {
     *this = ::std::move(from);
   }
 
-  inline reducerKeyValue& operator=(const reducerKeyValue& from) {
+  inline mapFilePortion& operator=(const mapFilePortion& from) {
     CopyFrom(from);
     return *this;
   }
-  inline reducerKeyValue& operator=(reducerKeyValue&& from) noexcept {
+  inline mapFilePortion& operator=(mapFilePortion&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -622,20 +602,20 @@ class reducerKeyValue PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const reducerKeyValue& default_instance();
+  static const mapFilePortion& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const reducerKeyValue* internal_default_instance() {
-    return reinterpret_cast<const reducerKeyValue*>(
-               &_reducerKeyValue_default_instance_);
+  static inline const mapFilePortion* internal_default_instance() {
+    return reinterpret_cast<const mapFilePortion*>(
+               &_mapFilePortion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(reducerKeyValue& a, reducerKeyValue& b) {
+  friend void swap(mapFilePortion& a, mapFilePortion& b) {
     a.Swap(&b);
   }
-  inline void Swap(reducerKeyValue* other) {
+  inline void Swap(mapFilePortion* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -643,7 +623,7 @@ class reducerKeyValue PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(reducerKeyValue* other) {
+  void UnsafeArenaSwap(mapFilePortion* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -651,17 +631,17 @@ class reducerKeyValue PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline reducerKeyValue* New() const final {
-    return CreateMaybeMessage<reducerKeyValue>(nullptr);
+  inline mapFilePortion* New() const final {
+    return CreateMaybeMessage<mapFilePortion>(nullptr);
   }
 
-  reducerKeyValue* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<reducerKeyValue>(arena);
+  mapFilePortion* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<mapFilePortion>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const reducerKeyValue& from);
-  void MergeFrom(const reducerKeyValue& from);
+  void CopyFrom(const mapFilePortion& from);
+  void MergeFrom(const mapFilePortion& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -675,13 +655,13 @@ class reducerKeyValue PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(reducerKeyValue* other);
+  void InternalSwap(mapFilePortion* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "masterworker.reducerKeyValue";
+    return "masterworker.mapFilePortion";
   }
   protected:
-  explicit reducerKeyValue(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit mapFilePortion(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -701,58 +681,54 @@ class reducerKeyValue PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kFilesPathListFieldNumber = 2,
-    kKeyFieldNumber = 1,
+    kMapFilePathFieldNumber = 1,
+    kStartIdxMapperFieldNumber = 2,
+    kEndIdxMapperFieldNumber = 3,
   };
-  // repeated string filesPathList = 2;
-  int filespathlist_size() const;
+  // string mapFilePath = 1;
+  void clear_mapfilepath();
+  const std::string& mapfilepath() const;
+  void set_mapfilepath(const std::string& value);
+  void set_mapfilepath(std::string&& value);
+  void set_mapfilepath(const char* value);
+  void set_mapfilepath(const char* value, size_t size);
+  std::string* mutable_mapfilepath();
+  std::string* release_mapfilepath();
+  void set_allocated_mapfilepath(std::string* mapfilepath);
   private:
-  int _internal_filespathlist_size() const;
-  public:
-  void clear_filespathlist();
-  const std::string& filespathlist(int index) const;
-  std::string* mutable_filespathlist(int index);
-  void set_filespathlist(int index, const std::string& value);
-  void set_filespathlist(int index, std::string&& value);
-  void set_filespathlist(int index, const char* value);
-  void set_filespathlist(int index, const char* value, size_t size);
-  std::string* add_filespathlist();
-  void add_filespathlist(const std::string& value);
-  void add_filespathlist(std::string&& value);
-  void add_filespathlist(const char* value);
-  void add_filespathlist(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& filespathlist() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_filespathlist();
-  private:
-  const std::string& _internal_filespathlist(int index) const;
-  std::string* _internal_add_filespathlist();
+  const std::string& _internal_mapfilepath() const;
+  void _internal_set_mapfilepath(const std::string& value);
+  std::string* _internal_mutable_mapfilepath();
   public:
 
-  // string key = 1;
-  void clear_key();
-  const std::string& key() const;
-  void set_key(const std::string& value);
-  void set_key(std::string&& value);
-  void set_key(const char* value);
-  void set_key(const char* value, size_t size);
-  std::string* mutable_key();
-  std::string* release_key();
-  void set_allocated_key(std::string* key);
+  // int32 startIdxMapper = 2;
+  void clear_startidxmapper();
+  ::PROTOBUF_NAMESPACE_ID::int32 startidxmapper() const;
+  void set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  const std::string& _internal_key() const;
-  void _internal_set_key(const std::string& value);
-  std::string* _internal_mutable_key();
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_startidxmapper() const;
+  void _internal_set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:masterworker.reducerKeyValue)
+  // int32 endIdxMapper = 3;
+  void clear_endidxmapper();
+  ::PROTOBUF_NAMESPACE_ID::int32 endidxmapper() const;
+  void set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_endidxmapper() const;
+  void _internal_set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:masterworker.mapFilePortion)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> filespathlist_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mapfilepath_;
+  ::PROTOBUF_NAMESPACE_ID::int32 startidxmapper_;
+  ::PROTOBUF_NAMESPACE_ID::int32 endidxmapper_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -901,31 +877,56 @@ class workerJob PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMapFilePathFieldNumber = 2,
-    kUserIDFieldNumber = 6,
-    kReducerInfoFieldNumber = 1,
-    kStartIdxMapperFieldNumber = 3,
-    kEndIdxMapperFieldNumber = 4,
-    kJobTypeFieldNumber = 5,
-    kJobIDFieldNumber = 7,
+    kFilesPathListReducerFieldNumber = 1,
+    kFileportionsFieldNumber = 2,
+    kUserIDFieldNumber = 5,
+    kJobIDFieldNumber = 6,
+    kMapFileSplitCountFieldNumber = 3,
+    kJobTypeFieldNumber = 4,
   };
-  // string mapFilePath = 2;
-  void clear_mapfilepath();
-  const std::string& mapfilepath() const;
-  void set_mapfilepath(const std::string& value);
-  void set_mapfilepath(std::string&& value);
-  void set_mapfilepath(const char* value);
-  void set_mapfilepath(const char* value, size_t size);
-  std::string* mutable_mapfilepath();
-  std::string* release_mapfilepath();
-  void set_allocated_mapfilepath(std::string* mapfilepath);
+  // repeated string filesPathListReducer = 1;
+  int filespathlistreducer_size() const;
   private:
-  const std::string& _internal_mapfilepath() const;
-  void _internal_set_mapfilepath(const std::string& value);
-  std::string* _internal_mutable_mapfilepath();
+  int _internal_filespathlistreducer_size() const;
+  public:
+  void clear_filespathlistreducer();
+  const std::string& filespathlistreducer(int index) const;
+  std::string* mutable_filespathlistreducer(int index);
+  void set_filespathlistreducer(int index, const std::string& value);
+  void set_filespathlistreducer(int index, std::string&& value);
+  void set_filespathlistreducer(int index, const char* value);
+  void set_filespathlistreducer(int index, const char* value, size_t size);
+  std::string* add_filespathlistreducer();
+  void add_filespathlistreducer(const std::string& value);
+  void add_filespathlistreducer(std::string&& value);
+  void add_filespathlistreducer(const char* value);
+  void add_filespathlistreducer(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& filespathlistreducer() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_filespathlistreducer();
+  private:
+  const std::string& _internal_filespathlistreducer(int index) const;
+  std::string* _internal_add_filespathlistreducer();
   public:
 
-  // string userID = 6;
+  // repeated .masterworker.mapFilePortion fileportions = 2;
+  int fileportions_size() const;
+  private:
+  int _internal_fileportions_size() const;
+  public:
+  void clear_fileportions();
+  ::masterworker::mapFilePortion* mutable_fileportions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::mapFilePortion >*
+      mutable_fileportions();
+  private:
+  const ::masterworker::mapFilePortion& _internal_fileportions(int index) const;
+  ::masterworker::mapFilePortion* _internal_add_fileportions();
+  public:
+  const ::masterworker::mapFilePortion& fileportions(int index) const;
+  ::masterworker::mapFilePortion* add_fileportions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::mapFilePortion >&
+      fileportions() const;
+
+  // string userID = 5;
   void clear_userid();
   const std::string& userid() const;
   void set_userid(const std::string& value);
@@ -941,58 +942,38 @@ class workerJob PROTOBUF_FINAL :
   std::string* _internal_mutable_userid();
   public:
 
-  // .masterworker.reducerKeyValue reducerInfo = 1;
-  bool has_reducerinfo() const;
+  // string jobID = 6;
+  void clear_jobid();
+  const std::string& jobid() const;
+  void set_jobid(const std::string& value);
+  void set_jobid(std::string&& value);
+  void set_jobid(const char* value);
+  void set_jobid(const char* value, size_t size);
+  std::string* mutable_jobid();
+  std::string* release_jobid();
+  void set_allocated_jobid(std::string* jobid);
   private:
-  bool _internal_has_reducerinfo() const;
-  public:
-  void clear_reducerinfo();
-  const ::masterworker::reducerKeyValue& reducerinfo() const;
-  ::masterworker::reducerKeyValue* release_reducerinfo();
-  ::masterworker::reducerKeyValue* mutable_reducerinfo();
-  void set_allocated_reducerinfo(::masterworker::reducerKeyValue* reducerinfo);
-  private:
-  const ::masterworker::reducerKeyValue& _internal_reducerinfo() const;
-  ::masterworker::reducerKeyValue* _internal_mutable_reducerinfo();
-  public:
-  void unsafe_arena_set_allocated_reducerinfo(
-      ::masterworker::reducerKeyValue* reducerinfo);
-  ::masterworker::reducerKeyValue* unsafe_arena_release_reducerinfo();
-
-  // int32 startIdxMapper = 3;
-  void clear_startidxmapper();
-  ::PROTOBUF_NAMESPACE_ID::int32 startidxmapper() const;
-  void set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_startidxmapper() const;
-  void _internal_set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const std::string& _internal_jobid() const;
+  void _internal_set_jobid(const std::string& value);
+  std::string* _internal_mutable_jobid();
   public:
 
-  // int32 endIdxMapper = 4;
-  void clear_endidxmapper();
-  ::PROTOBUF_NAMESPACE_ID::int32 endidxmapper() const;
-  void set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
+  // int32 mapFileSplitCount = 3;
+  void clear_mapfilesplitcount();
+  ::PROTOBUF_NAMESPACE_ID::int32 mapfilesplitcount() const;
+  void set_mapfilesplitcount(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_endidxmapper() const;
-  void _internal_set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_mapfilesplitcount() const;
+  void _internal_set_mapfilesplitcount(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // .masterworker.workerJob.jobTypeEnum jobType = 5;
+  // .masterworker.workerJob.jobTypeEnum jobType = 4;
   void clear_jobtype();
   ::masterworker::workerJob_jobTypeEnum jobtype() const;
   void set_jobtype(::masterworker::workerJob_jobTypeEnum value);
   private:
   ::masterworker::workerJob_jobTypeEnum _internal_jobtype() const;
   void _internal_set_jobtype(::masterworker::workerJob_jobTypeEnum value);
-  public:
-
-  // int32 jobID = 7;
-  void clear_jobid();
-  ::PROTOBUF_NAMESPACE_ID::int32 jobid() const;
-  void set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_jobid() const;
-  void _internal_set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:masterworker.workerJob)
@@ -1002,13 +983,12 @@ class workerJob PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mapfilepath_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> filespathlistreducer_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::mapFilePortion > fileportions_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
-  ::masterworker::reducerKeyValue* reducerinfo_;
-  ::PROTOBUF_NAMESPACE_ID::int32 startidxmapper_;
-  ::PROTOBUF_NAMESPACE_ID::int32 endidxmapper_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr jobid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 mapfilesplitcount_;
   int jobtype_;
-  ::PROTOBUF_NAMESPACE_ID::int32 jobid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -1432,90 +1412,7 @@ inline void keyValuePair::set_allocated_value(std::string* value) {
 
 // jobResultsInfo
 
-// .masterworker.workerJob initialJob = 1;
-inline bool jobResultsInfo::_internal_has_initialjob() const {
-  return this != internal_default_instance() && initialjob_ != nullptr;
-}
-inline bool jobResultsInfo::has_initialjob() const {
-  return _internal_has_initialjob();
-}
-inline void jobResultsInfo::clear_initialjob() {
-  if (GetArena() == nullptr && initialjob_ != nullptr) {
-    delete initialjob_;
-  }
-  initialjob_ = nullptr;
-}
-inline const ::masterworker::workerJob& jobResultsInfo::_internal_initialjob() const {
-  const ::masterworker::workerJob* p = initialjob_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::masterworker::workerJob*>(
-      &::masterworker::_workerJob_default_instance_);
-}
-inline const ::masterworker::workerJob& jobResultsInfo::initialjob() const {
-  // @@protoc_insertion_point(field_get:masterworker.jobResultsInfo.initialJob)
-  return _internal_initialjob();
-}
-inline void jobResultsInfo::unsafe_arena_set_allocated_initialjob(
-    ::masterworker::workerJob* initialjob) {
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(initialjob_);
-  }
-  initialjob_ = initialjob;
-  if (initialjob) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:masterworker.jobResultsInfo.initialJob)
-}
-inline ::masterworker::workerJob* jobResultsInfo::release_initialjob() {
-  
-  ::masterworker::workerJob* temp = initialjob_;
-  initialjob_ = nullptr;
-  if (GetArena() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-  return temp;
-}
-inline ::masterworker::workerJob* jobResultsInfo::unsafe_arena_release_initialjob() {
-  // @@protoc_insertion_point(field_release:masterworker.jobResultsInfo.initialJob)
-  
-  ::masterworker::workerJob* temp = initialjob_;
-  initialjob_ = nullptr;
-  return temp;
-}
-inline ::masterworker::workerJob* jobResultsInfo::_internal_mutable_initialjob() {
-  
-  if (initialjob_ == nullptr) {
-    auto* p = CreateMaybeMessage<::masterworker::workerJob>(GetArena());
-    initialjob_ = p;
-  }
-  return initialjob_;
-}
-inline ::masterworker::workerJob* jobResultsInfo::mutable_initialjob() {
-  // @@protoc_insertion_point(field_mutable:masterworker.jobResultsInfo.initialJob)
-  return _internal_mutable_initialjob();
-}
-inline void jobResultsInfo::set_allocated_initialjob(::masterworker::workerJob* initialjob) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  if (message_arena == nullptr) {
-    delete initialjob_;
-  }
-  if (initialjob) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(initialjob);
-    if (message_arena != submessage_arena) {
-      initialjob = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, initialjob, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  initialjob_ = initialjob;
-  // @@protoc_insertion_point(field_set_allocated:masterworker.jobResultsInfo.initialJob)
-}
-
-// repeated .masterworker.keyValuePair keysAndValues = 2;
+// repeated .masterworker.keyValuePair keysAndValues = 1;
 inline int jobResultsInfo::_internal_keysandvalues_size() const {
   return keysandvalues_.size();
 }
@@ -1622,283 +1519,60 @@ inline void masterInfo::set_allocated_ipaddress(std::string* ipaddress) {
 
 // -------------------------------------------------------------------
 
-// reducerKeyValue
+// mapFilePortion
 
-// string key = 1;
-inline void reducerKeyValue::clear_key() {
-  key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline const std::string& reducerKeyValue::key() const {
-  // @@protoc_insertion_point(field_get:masterworker.reducerKeyValue.key)
-  return _internal_key();
-}
-inline void reducerKeyValue::set_key(const std::string& value) {
-  _internal_set_key(value);
-  // @@protoc_insertion_point(field_set:masterworker.reducerKeyValue.key)
-}
-inline std::string* reducerKeyValue::mutable_key() {
-  // @@protoc_insertion_point(field_mutable:masterworker.reducerKeyValue.key)
-  return _internal_mutable_key();
-}
-inline const std::string& reducerKeyValue::_internal_key() const {
-  return key_.Get();
-}
-inline void reducerKeyValue::_internal_set_key(const std::string& value) {
-  
-  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void reducerKeyValue::set_key(std::string&& value) {
-  
-  key_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:masterworker.reducerKeyValue.key)
-}
-inline void reducerKeyValue::set_key(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:masterworker.reducerKeyValue.key)
-}
-inline void reducerKeyValue::set_key(const char* value,
-    size_t size) {
-  
-  key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:masterworker.reducerKeyValue.key)
-}
-inline std::string* reducerKeyValue::_internal_mutable_key() {
-  
-  return key_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* reducerKeyValue::release_key() {
-  // @@protoc_insertion_point(field_release:masterworker.reducerKeyValue.key)
-  return key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void reducerKeyValue::set_allocated_key(std::string* key) {
-  if (key != nullptr) {
-    
-  } else {
-    
-  }
-  key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), key,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:masterworker.reducerKeyValue.key)
-}
-
-// repeated string filesPathList = 2;
-inline int reducerKeyValue::_internal_filespathlist_size() const {
-  return filespathlist_.size();
-}
-inline int reducerKeyValue::filespathlist_size() const {
-  return _internal_filespathlist_size();
-}
-inline void reducerKeyValue::clear_filespathlist() {
-  filespathlist_.Clear();
-}
-inline std::string* reducerKeyValue::add_filespathlist() {
-  // @@protoc_insertion_point(field_add_mutable:masterworker.reducerKeyValue.filesPathList)
-  return _internal_add_filespathlist();
-}
-inline const std::string& reducerKeyValue::_internal_filespathlist(int index) const {
-  return filespathlist_.Get(index);
-}
-inline const std::string& reducerKeyValue::filespathlist(int index) const {
-  // @@protoc_insertion_point(field_get:masterworker.reducerKeyValue.filesPathList)
-  return _internal_filespathlist(index);
-}
-inline std::string* reducerKeyValue::mutable_filespathlist(int index) {
-  // @@protoc_insertion_point(field_mutable:masterworker.reducerKeyValue.filesPathList)
-  return filespathlist_.Mutable(index);
-}
-inline void reducerKeyValue::set_filespathlist(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:masterworker.reducerKeyValue.filesPathList)
-  filespathlist_.Mutable(index)->assign(value);
-}
-inline void reducerKeyValue::set_filespathlist(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:masterworker.reducerKeyValue.filesPathList)
-  filespathlist_.Mutable(index)->assign(std::move(value));
-}
-inline void reducerKeyValue::set_filespathlist(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  filespathlist_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:masterworker.reducerKeyValue.filesPathList)
-}
-inline void reducerKeyValue::set_filespathlist(int index, const char* value, size_t size) {
-  filespathlist_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:masterworker.reducerKeyValue.filesPathList)
-}
-inline std::string* reducerKeyValue::_internal_add_filespathlist() {
-  return filespathlist_.Add();
-}
-inline void reducerKeyValue::add_filespathlist(const std::string& value) {
-  filespathlist_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:masterworker.reducerKeyValue.filesPathList)
-}
-inline void reducerKeyValue::add_filespathlist(std::string&& value) {
-  filespathlist_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:masterworker.reducerKeyValue.filesPathList)
-}
-inline void reducerKeyValue::add_filespathlist(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  filespathlist_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:masterworker.reducerKeyValue.filesPathList)
-}
-inline void reducerKeyValue::add_filespathlist(const char* value, size_t size) {
-  filespathlist_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:masterworker.reducerKeyValue.filesPathList)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-reducerKeyValue::filespathlist() const {
-  // @@protoc_insertion_point(field_list:masterworker.reducerKeyValue.filesPathList)
-  return filespathlist_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-reducerKeyValue::mutable_filespathlist() {
-  // @@protoc_insertion_point(field_mutable_list:masterworker.reducerKeyValue.filesPathList)
-  return &filespathlist_;
-}
-
-// -------------------------------------------------------------------
-
-// workerJob
-
-// .masterworker.reducerKeyValue reducerInfo = 1;
-inline bool workerJob::_internal_has_reducerinfo() const {
-  return this != internal_default_instance() && reducerinfo_ != nullptr;
-}
-inline bool workerJob::has_reducerinfo() const {
-  return _internal_has_reducerinfo();
-}
-inline void workerJob::clear_reducerinfo() {
-  if (GetArena() == nullptr && reducerinfo_ != nullptr) {
-    delete reducerinfo_;
-  }
-  reducerinfo_ = nullptr;
-}
-inline const ::masterworker::reducerKeyValue& workerJob::_internal_reducerinfo() const {
-  const ::masterworker::reducerKeyValue* p = reducerinfo_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::masterworker::reducerKeyValue*>(
-      &::masterworker::_reducerKeyValue_default_instance_);
-}
-inline const ::masterworker::reducerKeyValue& workerJob::reducerinfo() const {
-  // @@protoc_insertion_point(field_get:masterworker.workerJob.reducerInfo)
-  return _internal_reducerinfo();
-}
-inline void workerJob::unsafe_arena_set_allocated_reducerinfo(
-    ::masterworker::reducerKeyValue* reducerinfo) {
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(reducerinfo_);
-  }
-  reducerinfo_ = reducerinfo;
-  if (reducerinfo) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:masterworker.workerJob.reducerInfo)
-}
-inline ::masterworker::reducerKeyValue* workerJob::release_reducerinfo() {
-  
-  ::masterworker::reducerKeyValue* temp = reducerinfo_;
-  reducerinfo_ = nullptr;
-  if (GetArena() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-  return temp;
-}
-inline ::masterworker::reducerKeyValue* workerJob::unsafe_arena_release_reducerinfo() {
-  // @@protoc_insertion_point(field_release:masterworker.workerJob.reducerInfo)
-  
-  ::masterworker::reducerKeyValue* temp = reducerinfo_;
-  reducerinfo_ = nullptr;
-  return temp;
-}
-inline ::masterworker::reducerKeyValue* workerJob::_internal_mutable_reducerinfo() {
-  
-  if (reducerinfo_ == nullptr) {
-    auto* p = CreateMaybeMessage<::masterworker::reducerKeyValue>(GetArena());
-    reducerinfo_ = p;
-  }
-  return reducerinfo_;
-}
-inline ::masterworker::reducerKeyValue* workerJob::mutable_reducerinfo() {
-  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.reducerInfo)
-  return _internal_mutable_reducerinfo();
-}
-inline void workerJob::set_allocated_reducerinfo(::masterworker::reducerKeyValue* reducerinfo) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  if (message_arena == nullptr) {
-    delete reducerinfo_;
-  }
-  if (reducerinfo) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(reducerinfo);
-    if (message_arena != submessage_arena) {
-      reducerinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, reducerinfo, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  reducerinfo_ = reducerinfo;
-  // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.reducerInfo)
-}
-
-// string mapFilePath = 2;
-inline void workerJob::clear_mapfilepath() {
+// string mapFilePath = 1;
+inline void mapFilePortion::clear_mapfilepath() {
   mapfilepath_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& workerJob::mapfilepath() const {
-  // @@protoc_insertion_point(field_get:masterworker.workerJob.mapFilePath)
+inline const std::string& mapFilePortion::mapfilepath() const {
+  // @@protoc_insertion_point(field_get:masterworker.mapFilePortion.mapFilePath)
   return _internal_mapfilepath();
 }
-inline void workerJob::set_mapfilepath(const std::string& value) {
+inline void mapFilePortion::set_mapfilepath(const std::string& value) {
   _internal_set_mapfilepath(value);
-  // @@protoc_insertion_point(field_set:masterworker.workerJob.mapFilePath)
+  // @@protoc_insertion_point(field_set:masterworker.mapFilePortion.mapFilePath)
 }
-inline std::string* workerJob::mutable_mapfilepath() {
-  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.mapFilePath)
+inline std::string* mapFilePortion::mutable_mapfilepath() {
+  // @@protoc_insertion_point(field_mutable:masterworker.mapFilePortion.mapFilePath)
   return _internal_mutable_mapfilepath();
 }
-inline const std::string& workerJob::_internal_mapfilepath() const {
+inline const std::string& mapFilePortion::_internal_mapfilepath() const {
   return mapfilepath_.Get();
 }
-inline void workerJob::_internal_set_mapfilepath(const std::string& value) {
+inline void mapFilePortion::_internal_set_mapfilepath(const std::string& value) {
   
   mapfilepath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void workerJob::set_mapfilepath(std::string&& value) {
+inline void mapFilePortion::set_mapfilepath(std::string&& value) {
   
   mapfilepath_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:masterworker.workerJob.mapFilePath)
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.mapFilePortion.mapFilePath)
 }
-inline void workerJob::set_mapfilepath(const char* value) {
+inline void mapFilePortion::set_mapfilepath(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   mapfilepath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:masterworker.workerJob.mapFilePath)
+  // @@protoc_insertion_point(field_set_char:masterworker.mapFilePortion.mapFilePath)
 }
-inline void workerJob::set_mapfilepath(const char* value,
+inline void mapFilePortion::set_mapfilepath(const char* value,
     size_t size) {
   
   mapfilepath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:masterworker.workerJob.mapFilePath)
+  // @@protoc_insertion_point(field_set_pointer:masterworker.mapFilePortion.mapFilePath)
 }
-inline std::string* workerJob::_internal_mutable_mapfilepath() {
+inline std::string* mapFilePortion::_internal_mutable_mapfilepath() {
   
   return mapfilepath_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* workerJob::release_mapfilepath() {
-  // @@protoc_insertion_point(field_release:masterworker.workerJob.mapFilePath)
+inline std::string* mapFilePortion::release_mapfilepath() {
+  // @@protoc_insertion_point(field_release:masterworker.mapFilePortion.mapFilePath)
   return mapfilepath_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void workerJob::set_allocated_mapfilepath(std::string* mapfilepath) {
+inline void mapFilePortion::set_allocated_mapfilepath(std::string* mapfilepath) {
   if (mapfilepath != nullptr) {
     
   } else {
@@ -1906,50 +1580,187 @@ inline void workerJob::set_allocated_mapfilepath(std::string* mapfilepath) {
   }
   mapfilepath_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), mapfilepath,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.mapFilePath)
+  // @@protoc_insertion_point(field_set_allocated:masterworker.mapFilePortion.mapFilePath)
 }
 
-// int32 startIdxMapper = 3;
-inline void workerJob::clear_startidxmapper() {
+// int32 startIdxMapper = 2;
+inline void mapFilePortion::clear_startidxmapper() {
   startidxmapper_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::_internal_startidxmapper() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::_internal_startidxmapper() const {
   return startidxmapper_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::startidxmapper() const {
-  // @@protoc_insertion_point(field_get:masterworker.workerJob.startIdxMapper)
+inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::startidxmapper() const {
+  // @@protoc_insertion_point(field_get:masterworker.mapFilePortion.startIdxMapper)
   return _internal_startidxmapper();
 }
-inline void workerJob::_internal_set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void mapFilePortion::_internal_set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
   startidxmapper_ = value;
 }
-inline void workerJob::set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void mapFilePortion::set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_startidxmapper(value);
-  // @@protoc_insertion_point(field_set:masterworker.workerJob.startIdxMapper)
+  // @@protoc_insertion_point(field_set:masterworker.mapFilePortion.startIdxMapper)
 }
 
-// int32 endIdxMapper = 4;
-inline void workerJob::clear_endidxmapper() {
+// int32 endIdxMapper = 3;
+inline void mapFilePortion::clear_endidxmapper() {
   endidxmapper_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::_internal_endidxmapper() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::_internal_endidxmapper() const {
   return endidxmapper_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::endidxmapper() const {
-  // @@protoc_insertion_point(field_get:masterworker.workerJob.endIdxMapper)
+inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::endidxmapper() const {
+  // @@protoc_insertion_point(field_get:masterworker.mapFilePortion.endIdxMapper)
   return _internal_endidxmapper();
 }
-inline void workerJob::_internal_set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void mapFilePortion::_internal_set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
   endidxmapper_ = value;
 }
-inline void workerJob::set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void mapFilePortion::set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_endidxmapper(value);
-  // @@protoc_insertion_point(field_set:masterworker.workerJob.endIdxMapper)
+  // @@protoc_insertion_point(field_set:masterworker.mapFilePortion.endIdxMapper)
 }
 
-// .masterworker.workerJob.jobTypeEnum jobType = 5;
+// -------------------------------------------------------------------
+
+// workerJob
+
+// repeated string filesPathListReducer = 1;
+inline int workerJob::_internal_filespathlistreducer_size() const {
+  return filespathlistreducer_.size();
+}
+inline int workerJob::filespathlistreducer_size() const {
+  return _internal_filespathlistreducer_size();
+}
+inline void workerJob::clear_filespathlistreducer() {
+  filespathlistreducer_.Clear();
+}
+inline std::string* workerJob::add_filespathlistreducer() {
+  // @@protoc_insertion_point(field_add_mutable:masterworker.workerJob.filesPathListReducer)
+  return _internal_add_filespathlistreducer();
+}
+inline const std::string& workerJob::_internal_filespathlistreducer(int index) const {
+  return filespathlistreducer_.Get(index);
+}
+inline const std::string& workerJob::filespathlistreducer(int index) const {
+  // @@protoc_insertion_point(field_get:masterworker.workerJob.filesPathListReducer)
+  return _internal_filespathlistreducer(index);
+}
+inline std::string* workerJob::mutable_filespathlistreducer(int index) {
+  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.filesPathListReducer)
+  return filespathlistreducer_.Mutable(index);
+}
+inline void workerJob::set_filespathlistreducer(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:masterworker.workerJob.filesPathListReducer)
+  filespathlistreducer_.Mutable(index)->assign(value);
+}
+inline void workerJob::set_filespathlistreducer(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:masterworker.workerJob.filesPathListReducer)
+  filespathlistreducer_.Mutable(index)->assign(std::move(value));
+}
+inline void workerJob::set_filespathlistreducer(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  filespathlistreducer_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:masterworker.workerJob.filesPathListReducer)
+}
+inline void workerJob::set_filespathlistreducer(int index, const char* value, size_t size) {
+  filespathlistreducer_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:masterworker.workerJob.filesPathListReducer)
+}
+inline std::string* workerJob::_internal_add_filespathlistreducer() {
+  return filespathlistreducer_.Add();
+}
+inline void workerJob::add_filespathlistreducer(const std::string& value) {
+  filespathlistreducer_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:masterworker.workerJob.filesPathListReducer)
+}
+inline void workerJob::add_filespathlistreducer(std::string&& value) {
+  filespathlistreducer_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:masterworker.workerJob.filesPathListReducer)
+}
+inline void workerJob::add_filespathlistreducer(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  filespathlistreducer_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:masterworker.workerJob.filesPathListReducer)
+}
+inline void workerJob::add_filespathlistreducer(const char* value, size_t size) {
+  filespathlistreducer_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:masterworker.workerJob.filesPathListReducer)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+workerJob::filespathlistreducer() const {
+  // @@protoc_insertion_point(field_list:masterworker.workerJob.filesPathListReducer)
+  return filespathlistreducer_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+workerJob::mutable_filespathlistreducer() {
+  // @@protoc_insertion_point(field_mutable_list:masterworker.workerJob.filesPathListReducer)
+  return &filespathlistreducer_;
+}
+
+// repeated .masterworker.mapFilePortion fileportions = 2;
+inline int workerJob::_internal_fileportions_size() const {
+  return fileportions_.size();
+}
+inline int workerJob::fileportions_size() const {
+  return _internal_fileportions_size();
+}
+inline void workerJob::clear_fileportions() {
+  fileportions_.Clear();
+}
+inline ::masterworker::mapFilePortion* workerJob::mutable_fileportions(int index) {
+  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.fileportions)
+  return fileportions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::mapFilePortion >*
+workerJob::mutable_fileportions() {
+  // @@protoc_insertion_point(field_mutable_list:masterworker.workerJob.fileportions)
+  return &fileportions_;
+}
+inline const ::masterworker::mapFilePortion& workerJob::_internal_fileportions(int index) const {
+  return fileportions_.Get(index);
+}
+inline const ::masterworker::mapFilePortion& workerJob::fileportions(int index) const {
+  // @@protoc_insertion_point(field_get:masterworker.workerJob.fileportions)
+  return _internal_fileportions(index);
+}
+inline ::masterworker::mapFilePortion* workerJob::_internal_add_fileportions() {
+  return fileportions_.Add();
+}
+inline ::masterworker::mapFilePortion* workerJob::add_fileportions() {
+  // @@protoc_insertion_point(field_add:masterworker.workerJob.fileportions)
+  return _internal_add_fileportions();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::mapFilePortion >&
+workerJob::fileportions() const {
+  // @@protoc_insertion_point(field_list:masterworker.workerJob.fileportions)
+  return fileportions_;
+}
+
+// int32 mapFileSplitCount = 3;
+inline void workerJob::clear_mapfilesplitcount() {
+  mapfilesplitcount_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::_internal_mapfilesplitcount() const {
+  return mapfilesplitcount_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::mapfilesplitcount() const {
+  // @@protoc_insertion_point(field_get:masterworker.workerJob.mapFileSplitCount)
+  return _internal_mapfilesplitcount();
+}
+inline void workerJob::_internal_set_mapfilesplitcount(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  mapfilesplitcount_ = value;
+}
+inline void workerJob::set_mapfilesplitcount(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_mapfilesplitcount(value);
+  // @@protoc_insertion_point(field_set:masterworker.workerJob.mapFileSplitCount)
+}
+
+// .masterworker.workerJob.jobTypeEnum jobType = 4;
 inline void workerJob::clear_jobtype() {
   jobtype_ = 0;
 }
@@ -1969,7 +1780,7 @@ inline void workerJob::set_jobtype(::masterworker::workerJob_jobTypeEnum value) 
   // @@protoc_insertion_point(field_set:masterworker.workerJob.jobType)
 }
 
-// string userID = 6;
+// string userID = 5;
 inline void workerJob::clear_userid() {
   userid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
@@ -2031,24 +1842,66 @@ inline void workerJob::set_allocated_userid(std::string* userid) {
   // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.userID)
 }
 
-// int32 jobID = 7;
+// string jobID = 6;
 inline void workerJob::clear_jobid() {
-  jobid_ = 0;
+  jobid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::_internal_jobid() const {
-  return jobid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::jobid() const {
+inline const std::string& workerJob::jobid() const {
   // @@protoc_insertion_point(field_get:masterworker.workerJob.jobID)
   return _internal_jobid();
 }
-inline void workerJob::_internal_set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  jobid_ = value;
-}
-inline void workerJob::set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void workerJob::set_jobid(const std::string& value) {
   _internal_set_jobid(value);
   // @@protoc_insertion_point(field_set:masterworker.workerJob.jobID)
+}
+inline std::string* workerJob::mutable_jobid() {
+  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.jobID)
+  return _internal_mutable_jobid();
+}
+inline const std::string& workerJob::_internal_jobid() const {
+  return jobid_.Get();
+}
+inline void workerJob::_internal_set_jobid(const std::string& value) {
+  
+  jobid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void workerJob::set_jobid(std::string&& value) {
+  
+  jobid_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.workerJob.jobID)
+}
+inline void workerJob::set_jobid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  jobid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:masterworker.workerJob.jobID)
+}
+inline void workerJob::set_jobid(const char* value,
+    size_t size) {
+  
+  jobid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:masterworker.workerJob.jobID)
+}
+inline std::string* workerJob::_internal_mutable_jobid() {
+  
+  return jobid_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* workerJob::release_jobid() {
+  // @@protoc_insertion_point(field_release:masterworker.workerJob.jobID)
+  return jobid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void workerJob::set_allocated_jobid(std::string* jobid) {
+  if (jobid != nullptr) {
+    
+  } else {
+    
+  }
+  jobid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), jobid,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.jobID)
 }
 
 // -------------------------------------------------------------------
