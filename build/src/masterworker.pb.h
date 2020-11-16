@@ -114,6 +114,32 @@ inline bool workerJob_jobTypeEnum_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<workerJob_jobTypeEnum>(
     workerJob_jobTypeEnum_descriptor(), name, value);
 }
+enum workerStatus_Status : int {
+  workerStatus_Status_BUSY = 0,
+  workerStatus_Status_FREE = 1,
+  workerStatus_Status_JOB_DONE = 2,
+  workerStatus_Status_workerStatus_Status_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  workerStatus_Status_workerStatus_Status_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool workerStatus_Status_IsValid(int value);
+constexpr workerStatus_Status workerStatus_Status_Status_MIN = workerStatus_Status_BUSY;
+constexpr workerStatus_Status workerStatus_Status_Status_MAX = workerStatus_Status_JOB_DONE;
+constexpr int workerStatus_Status_Status_ARRAYSIZE = workerStatus_Status_Status_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* workerStatus_Status_descriptor();
+template<typename T>
+inline const std::string& workerStatus_Status_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, workerStatus_Status>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function workerStatus_Status_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    workerStatus_Status_descriptor(), enum_t_value);
+}
+inline bool workerStatus_Status_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, workerStatus_Status* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<workerStatus_Status>(
+    workerStatus_Status_descriptor(), name, value);
+}
 // ===================================================================
 
 class keyValuePair PROTOBUF_FINAL :
@@ -878,11 +904,12 @@ class workerJob PROTOBUF_FINAL :
 
   enum : int {
     kFilesPathListReducerFieldNumber = 1,
-    kFileportionsFieldNumber = 2,
-    kUserIDFieldNumber = 5,
-    kJobIDFieldNumber = 6,
-    kMapFileSplitCountFieldNumber = 3,
-    kJobTypeFieldNumber = 4,
+    kFileportionsFieldNumber = 3,
+    kReducerOutputPathFieldNumber = 2,
+    kUserIDFieldNumber = 6,
+    kMapFileSplitCountFieldNumber = 4,
+    kJobTypeFieldNumber = 5,
+    kJobIDFieldNumber = 7,
   };
   // repeated string filesPathListReducer = 1;
   int filespathlistreducer_size() const;
@@ -908,7 +935,7 @@ class workerJob PROTOBUF_FINAL :
   std::string* _internal_add_filespathlistreducer();
   public:
 
-  // repeated .masterworker.mapFilePortion fileportions = 2;
+  // repeated .masterworker.mapFilePortion fileportions = 3;
   int fileportions_size() const;
   private:
   int _internal_fileportions_size() const;
@@ -926,7 +953,23 @@ class workerJob PROTOBUF_FINAL :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::mapFilePortion >&
       fileportions() const;
 
-  // string userID = 5;
+  // string reducerOutputPath = 2;
+  void clear_reduceroutputpath();
+  const std::string& reduceroutputpath() const;
+  void set_reduceroutputpath(const std::string& value);
+  void set_reduceroutputpath(std::string&& value);
+  void set_reduceroutputpath(const char* value);
+  void set_reduceroutputpath(const char* value, size_t size);
+  std::string* mutable_reduceroutputpath();
+  std::string* release_reduceroutputpath();
+  void set_allocated_reduceroutputpath(std::string* reduceroutputpath);
+  private:
+  const std::string& _internal_reduceroutputpath() const;
+  void _internal_set_reduceroutputpath(const std::string& value);
+  std::string* _internal_mutable_reduceroutputpath();
+  public:
+
+  // string userID = 6;
   void clear_userid();
   const std::string& userid() const;
   void set_userid(const std::string& value);
@@ -942,23 +985,7 @@ class workerJob PROTOBUF_FINAL :
   std::string* _internal_mutable_userid();
   public:
 
-  // string jobID = 6;
-  void clear_jobid();
-  const std::string& jobid() const;
-  void set_jobid(const std::string& value);
-  void set_jobid(std::string&& value);
-  void set_jobid(const char* value);
-  void set_jobid(const char* value, size_t size);
-  std::string* mutable_jobid();
-  std::string* release_jobid();
-  void set_allocated_jobid(std::string* jobid);
-  private:
-  const std::string& _internal_jobid() const;
-  void _internal_set_jobid(const std::string& value);
-  std::string* _internal_mutable_jobid();
-  public:
-
-  // int32 mapFileSplitCount = 3;
+  // int32 mapFileSplitCount = 4;
   void clear_mapfilesplitcount();
   ::PROTOBUF_NAMESPACE_ID::int32 mapfilesplitcount() const;
   void set_mapfilesplitcount(::PROTOBUF_NAMESPACE_ID::int32 value);
@@ -967,13 +994,22 @@ class workerJob PROTOBUF_FINAL :
   void _internal_set_mapfilesplitcount(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // .masterworker.workerJob.jobTypeEnum jobType = 4;
+  // .masterworker.workerJob.jobTypeEnum jobType = 5;
   void clear_jobtype();
   ::masterworker::workerJob_jobTypeEnum jobtype() const;
   void set_jobtype(::masterworker::workerJob_jobTypeEnum value);
   private:
   ::masterworker::workerJob_jobTypeEnum _internal_jobtype() const;
   void _internal_set_jobtype(::masterworker::workerJob_jobTypeEnum value);
+  public:
+
+  // int32 jobID = 7;
+  void clear_jobid();
+  ::PROTOBUF_NAMESPACE_ID::int32 jobid() const;
+  void set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_jobid() const;
+  void _internal_set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:masterworker.workerJob)
@@ -985,10 +1021,11 @@ class workerJob PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> filespathlistreducer_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::masterworker::mapFilePortion > fileportions_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reduceroutputpath_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr jobid_;
   ::PROTOBUF_NAMESPACE_ID::int32 mapfilesplitcount_;
   int jobtype_;
+  ::PROTOBUF_NAMESPACE_ID::int32 jobid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -1248,18 +1285,50 @@ class workerStatus PROTOBUF_FINAL :
 
   // nested types ----------------------------------------------------
 
+  typedef workerStatus_Status Status;
+  static constexpr Status BUSY =
+    workerStatus_Status_BUSY;
+  static constexpr Status FREE =
+    workerStatus_Status_FREE;
+  static constexpr Status JOB_DONE =
+    workerStatus_Status_JOB_DONE;
+  static inline bool Status_IsValid(int value) {
+    return workerStatus_Status_IsValid(value);
+  }
+  static constexpr Status Status_MIN =
+    workerStatus_Status_Status_MIN;
+  static constexpr Status Status_MAX =
+    workerStatus_Status_Status_MAX;
+  static constexpr int Status_ARRAYSIZE =
+    workerStatus_Status_Status_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  Status_descriptor() {
+    return workerStatus_Status_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& Status_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, Status>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function Status_Name.");
+    return workerStatus_Status_Name(enum_t_value);
+  }
+  static inline bool Status_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      Status* value) {
+    return workerStatus_Status_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
-    kIsHealthyFieldNumber = 1,
+    kStatusFieldNumber = 1,
   };
-  // bool isHealthy = 1;
-  void clear_ishealthy();
-  bool ishealthy() const;
-  void set_ishealthy(bool value);
+  // .masterworker.workerStatus.Status status = 1;
+  void clear_status();
+  ::masterworker::workerStatus_Status status() const;
+  void set_status(::masterworker::workerStatus_Status value);
   private:
-  bool _internal_ishealthy() const;
-  void _internal_set_ishealthy(bool value);
+  ::masterworker::workerStatus_Status _internal_status() const;
+  void _internal_set_status(::masterworker::workerStatus_Status value);
   public:
 
   // @@protoc_insertion_point(class_scope:masterworker.workerStatus)
@@ -1269,7 +1338,7 @@ class workerStatus PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  bool ishealthy_;
+  int status_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -1701,7 +1770,69 @@ workerJob::mutable_filespathlistreducer() {
   return &filespathlistreducer_;
 }
 
-// repeated .masterworker.mapFilePortion fileportions = 2;
+// string reducerOutputPath = 2;
+inline void workerJob::clear_reduceroutputpath() {
+  reduceroutputpath_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& workerJob::reduceroutputpath() const {
+  // @@protoc_insertion_point(field_get:masterworker.workerJob.reducerOutputPath)
+  return _internal_reduceroutputpath();
+}
+inline void workerJob::set_reduceroutputpath(const std::string& value) {
+  _internal_set_reduceroutputpath(value);
+  // @@protoc_insertion_point(field_set:masterworker.workerJob.reducerOutputPath)
+}
+inline std::string* workerJob::mutable_reduceroutputpath() {
+  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.reducerOutputPath)
+  return _internal_mutable_reduceroutputpath();
+}
+inline const std::string& workerJob::_internal_reduceroutputpath() const {
+  return reduceroutputpath_.Get();
+}
+inline void workerJob::_internal_set_reduceroutputpath(const std::string& value) {
+  
+  reduceroutputpath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void workerJob::set_reduceroutputpath(std::string&& value) {
+  
+  reduceroutputpath_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:masterworker.workerJob.reducerOutputPath)
+}
+inline void workerJob::set_reduceroutputpath(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  reduceroutputpath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:masterworker.workerJob.reducerOutputPath)
+}
+inline void workerJob::set_reduceroutputpath(const char* value,
+    size_t size) {
+  
+  reduceroutputpath_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:masterworker.workerJob.reducerOutputPath)
+}
+inline std::string* workerJob::_internal_mutable_reduceroutputpath() {
+  
+  return reduceroutputpath_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* workerJob::release_reduceroutputpath() {
+  // @@protoc_insertion_point(field_release:masterworker.workerJob.reducerOutputPath)
+  return reduceroutputpath_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void workerJob::set_allocated_reduceroutputpath(std::string* reduceroutputpath) {
+  if (reduceroutputpath != nullptr) {
+    
+  } else {
+    
+  }
+  reduceroutputpath_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), reduceroutputpath,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.reducerOutputPath)
+}
+
+// repeated .masterworker.mapFilePortion fileportions = 3;
 inline int workerJob::_internal_fileportions_size() const {
   return fileportions_.size();
 }
@@ -1740,7 +1871,7 @@ workerJob::fileportions() const {
   return fileportions_;
 }
 
-// int32 mapFileSplitCount = 3;
+// int32 mapFileSplitCount = 4;
 inline void workerJob::clear_mapfilesplitcount() {
   mapfilesplitcount_ = 0;
 }
@@ -1760,7 +1891,7 @@ inline void workerJob::set_mapfilesplitcount(::PROTOBUF_NAMESPACE_ID::int32 valu
   // @@protoc_insertion_point(field_set:masterworker.workerJob.mapFileSplitCount)
 }
 
-// .masterworker.workerJob.jobTypeEnum jobType = 4;
+// .masterworker.workerJob.jobTypeEnum jobType = 5;
 inline void workerJob::clear_jobtype() {
   jobtype_ = 0;
 }
@@ -1780,7 +1911,7 @@ inline void workerJob::set_jobtype(::masterworker::workerJob_jobTypeEnum value) 
   // @@protoc_insertion_point(field_set:masterworker.workerJob.jobType)
 }
 
-// string userID = 5;
+// string userID = 6;
 inline void workerJob::clear_userid() {
   userid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
@@ -1842,66 +1973,24 @@ inline void workerJob::set_allocated_userid(std::string* userid) {
   // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.userID)
 }
 
-// string jobID = 6;
+// int32 jobID = 7;
 inline void workerJob::clear_jobid() {
-  jobid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  jobid_ = 0;
 }
-inline const std::string& workerJob::jobid() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::_internal_jobid() const {
+  return jobid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 workerJob::jobid() const {
   // @@protoc_insertion_point(field_get:masterworker.workerJob.jobID)
   return _internal_jobid();
 }
-inline void workerJob::set_jobid(const std::string& value) {
+inline void workerJob::_internal_set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  jobid_ = value;
+}
+inline void workerJob::set_jobid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_jobid(value);
   // @@protoc_insertion_point(field_set:masterworker.workerJob.jobID)
-}
-inline std::string* workerJob::mutable_jobid() {
-  // @@protoc_insertion_point(field_mutable:masterworker.workerJob.jobID)
-  return _internal_mutable_jobid();
-}
-inline const std::string& workerJob::_internal_jobid() const {
-  return jobid_.Get();
-}
-inline void workerJob::_internal_set_jobid(const std::string& value) {
-  
-  jobid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void workerJob::set_jobid(std::string&& value) {
-  
-  jobid_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:masterworker.workerJob.jobID)
-}
-inline void workerJob::set_jobid(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  jobid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:masterworker.workerJob.jobID)
-}
-inline void workerJob::set_jobid(const char* value,
-    size_t size) {
-  
-  jobid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:masterworker.workerJob.jobID)
-}
-inline std::string* workerJob::_internal_mutable_jobid() {
-  
-  return jobid_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* workerJob::release_jobid() {
-  // @@protoc_insertion_point(field_release:masterworker.workerJob.jobID)
-  return jobid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void workerJob::set_allocated_jobid(std::string* jobid) {
-  if (jobid != nullptr) {
-    
-  } else {
-    
-  }
-  jobid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), jobid,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:masterworker.workerJob.jobID)
 }
 
 // -------------------------------------------------------------------
@@ -1974,24 +2063,24 @@ inline void workerInfo::set_allocated_workerip(std::string* workerip) {
 
 // workerStatus
 
-// bool isHealthy = 1;
-inline void workerStatus::clear_ishealthy() {
-  ishealthy_ = false;
+// .masterworker.workerStatus.Status status = 1;
+inline void workerStatus::clear_status() {
+  status_ = 0;
 }
-inline bool workerStatus::_internal_ishealthy() const {
-  return ishealthy_;
+inline ::masterworker::workerStatus_Status workerStatus::_internal_status() const {
+  return static_cast< ::masterworker::workerStatus_Status >(status_);
 }
-inline bool workerStatus::ishealthy() const {
-  // @@protoc_insertion_point(field_get:masterworker.workerStatus.isHealthy)
-  return _internal_ishealthy();
+inline ::masterworker::workerStatus_Status workerStatus::status() const {
+  // @@protoc_insertion_point(field_get:masterworker.workerStatus.status)
+  return _internal_status();
 }
-inline void workerStatus::_internal_set_ishealthy(bool value) {
+inline void workerStatus::_internal_set_status(::masterworker::workerStatus_Status value) {
   
-  ishealthy_ = value;
+  status_ = value;
 }
-inline void workerStatus::set_ishealthy(bool value) {
-  _internal_set_ishealthy(value);
-  // @@protoc_insertion_point(field_set:masterworker.workerStatus.isHealthy)
+inline void workerStatus::set_status(::masterworker::workerStatus_Status value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:masterworker.workerStatus.status)
 }
 
 #ifdef __GNUC__
@@ -2020,6 +2109,11 @@ template <> struct is_proto_enum< ::masterworker::workerJob_jobTypeEnum> : ::std
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::masterworker::workerJob_jobTypeEnum>() {
   return ::masterworker::workerJob_jobTypeEnum_descriptor();
+}
+template <> struct is_proto_enum< ::masterworker::workerStatus_Status> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::masterworker::workerStatus_Status>() {
+  return ::masterworker::workerStatus_Status_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
