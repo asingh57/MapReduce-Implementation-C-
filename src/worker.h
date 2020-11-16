@@ -2,7 +2,6 @@
 #define WORKER_H
 #pragma once
 
-#include <grpc++/grpc++.h>
 #include <iostream>
 #include <fstream>
 #include <chrono>
@@ -11,7 +10,7 @@
 #include <vector>
 #include <sstream>
 #include <queue>
-
+#include <grpc++/grpc++.h>
 #include "masterworker.grpc.pb.h"
 #include "masterworker.pb.h"
 #include "mr_task_factory.h"

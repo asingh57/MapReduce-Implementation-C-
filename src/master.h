@@ -1,8 +1,17 @@
 #pragma once
 
+
+#include <grpc++/grpc++.h>
+#include "masterworker.grpc.pb.h"
+#include "masterworker.pb.h"
+#include "mr_task_factory.h"
+#include "mr_tasks.h"
 #include "mapreduce_spec.h"
 #include "file_shard.h"
 
+using namespace std;
+using namespace grpc;
+using namespace masterworker;
 
 /* CS6210_TASK: Handle all the bookkeeping that Master is supposed to do.
 	This is probably the biggest task for this project, will test your understanding of map reduce */
