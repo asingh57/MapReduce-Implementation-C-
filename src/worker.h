@@ -15,6 +15,7 @@
 #include "masterworker.pb.h"
 #include "mr_task_factory.h"
 #include "mr_tasks.h"
+#include <functional>
 
 using namespace std;
 using namespace grpc;
@@ -36,41 +37,25 @@ class Worker {
         std::shared_ptr<ServerBuilder> m_builder;
         std::shared_ptr<WorkerService>m_service;
         std::shared_ptr<Server> m_server;
-        unique_ptr<master::Stub> m_masterStub;
-        workerJob m_jb;
+        mutable workerJob m_jb;
         /* NOW you can add below, data members and member functions as per the need of your implementation*/
         friend class BaseReducerInternal;
         friend class BaseMapperInternal;
         friend class WorkerService;
 
-        mutable mutex m_lock;
         mutable shared_ptr<string> m_masterIPAddress;
         string m_workerip;
         std::function<void (std::string,std::string)> m_shared_emitter;
 
         queue<keyValuePair> m_queue;
-        vector<string> m_outputPaths;
-        vector<shared_ptr<ofstream>>m_fileHandles;
+        map<int,pair<string,shared_ptr<ofstream>>>m_fileHandles;
+        mutable workerStatus m_workerStatus;
+        jobResultsInfo m_results;
 
-        void setMasterIP(const string masterIP) const{
-            if(!m_masterIPAddress){
-                m_masterIPAddress=std::shared_ptr<string>(new string(masterIP));
-            }
-            m_lock.unlock();
-        }
-
+        std::hash<std::string> m_hasher;
 
         bool getJobFromMaster(){
-            ClientContext context;
-            workerInfo query;
-            query.set_workerip(m_workerip);
-            Status status = m_masterStub->getJob(&context,query,&m_jb);
-
-            if (!status.ok()) {
-                std::cout << status.error_code() << ": " << status.error_message()
-                          << std::endl;
-                return false;
-            }
+            //m_jb
 
             return true;
         }
@@ -78,10 +63,11 @@ class Worker {
         void doWrites(){
             //empty out the queue
             int sz=m_queue.size();
-            int numFilesOpen=m_outputPaths.size();
+            int numFilesOpen=m_fileHandles.size();
+
             for(int i=0;i<sz;i++){
                 keyValuePair x= m_queue.back();
-                *(m_fileHandles[i%numFilesOpen]) << x.key()<<" "<< x.value()<<endl;
+                *(m_fileHandles[m_hasher(x.key())%numFilesOpen].second) << x.key()<<" "<< x.value()<<endl;
                 m_queue.pop();
             }
         }
@@ -92,9 +78,9 @@ class Worker {
             kvp.set_key(key);
             kvp.set_value(val);
             m_queue.push(kvp);
-            if(m_jb.jobtype()==workerJob::MAPPER==workerJob::MAPPER){
+            if(m_jb.jobtype()==workerJob::MAPPER){
                 //do occasional writes to disk
-                if(m_outputPaths.size()*5<m_queue.size()){
+                if(m_fileHandles.size()*5<m_queue.size()){
                     doWrites();
                 }
             }
@@ -104,26 +90,15 @@ class Worker {
         void finishWorkerJob(){
             doWrites();
 
-            jobResultsInfo results;
-            for(string outPath:m_outputPaths){
-                keyValuePair* kp = results.add_keysandvalues();
-                kp->set_key(outPath);
-                kp->set_value(outPath);
+            m_results= jobResultsInfo();
+            for(auto& out:m_fileHandles){
+                keyValuePair* kp = m_results.add_keysandvalues();
+                kp->set_key(to_string(out.first));
+                kp->set_value(out.second.first);
+                out.second.second->close();
             }
 
-            for(auto& handle: m_fileHandles){
-                handle->close();
-            }
-
-            ClientContext context;
-            masterInfo minfo;
-            //query.set_workerip(m_workerip);
-            Status status = m_masterStub->jobDone(&context,results,&minfo);
-
-            if (!status.ok()) {
-                std::cout << status.error_code() << ": " << status.error_message()
-                          << std::endl;
-            }
+            m_workerStatus.set_status(workerStatus::JOB_DONE);
 
 
         }
@@ -138,10 +113,31 @@ public:
     const Worker* m_wp;
     Status getHealth(ServerContext* context, const masterInfo* request,
                      workerStatus* reply) override {
-       reply->set_ishealthy(true);
-       (m_wp)->setMasterIP(request->ipaddress());
+       reply->set_status(m_wp->m_workerStatus.status());
        return Status::OK;
      }
+    Status setJob(ServerContext* context, const workerJob* request,
+                     workerStatus* reply) override {
+
+       m_wp->m_jb =workerJob(*request);
+       m_wp->m_workerStatus.set_status(workerStatus::BUSY);
+       reply->set_status(m_wp->m_workerStatus.status());
+       return Status::OK;
+     }
+
+    Status jobDoneResults(ServerContext* context, const workerJob* request,
+                     jobResultsInfo* reply) override {
+
+        for(auto& keyval:m_wp->m_results.keysandvalues()){
+
+            keyValuePair* kp =reply->add_keysandvalues();
+            kp->set_key(keyval.key());
+            kp->set_value(keyval.value());
+        }
+       m_wp->m_workerStatus.set_status(workerStatus::FREE);
+       return Status::OK;
+     }
+
 };
 
 
@@ -152,31 +148,23 @@ Worker::Worker(std::string ip_addr_port) :
     m_service(new WorkerService(this)),
     m_builder(new ServerBuilder()),
     m_queue(),
-    m_outputPaths(),
     m_fileHandles(),
     m_jb(),
     m_workerip(ip_addr_port),
     m_masterIPAddress() ,
-    m_lock()
+    m_workerStatus(),
+    m_hasher()
 
 {
-    m_lock.lock();
+    m_workerStatus.set_status(workerStatus::FREE);
 
     //open grpc listener for master requests
 
-    m_builder->AddListeningPort(ip_addr_port, grpc::InsecureServerCredentials());
+    m_builder->AddListeningPort(m_workerip, grpc::InsecureServerCredentials());
     m_builder->RegisterService(m_service.get());
     m_server=std::shared_ptr<Server>(m_builder->BuildAndStart());
-    cout <<"Opened worker server at address" << ip_addr_port <<endl;
+    cout <<"Opened worker server at address" << m_workerip <<endl;
 
-    cout <<"waiting for master communication" << endl;
-
-    //block till we fill m_masterIPAddress
-    m_lock.lock();
-    m_lock.unlock();
-    cout <<"established communication with the master" << endl;
-    //launch grpc client on port
-    m_masterStub=(master::NewStub(CreateChannel(*m_masterIPAddress, InsecureChannelCredentials())));
 
     m_shared_emitter= [&](const std::string& key, const std::string& val) { dealWithEmittedValue(key,val); };
 
@@ -194,10 +182,9 @@ extern std::shared_ptr<BaseReducer> get_reducer_from_task_factory(const std::str
 bool Worker::run() {
     while(true){
         m_queue.empty();
-        m_outputPaths.empty();
         m_fileHandles.empty();
     //poll for a job
-        if(!getJobFromMaster()){
+        if(m_workerStatus.status()!=workerStatus::BUSY){
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             continue;
         }
@@ -221,9 +208,8 @@ bool Worker::run() {
                 strm.close();
             }
             for(int i=0;i<m_jb.mapfilesplitcount();i++){
-                string pt=m_jb.jobid()+"_"+to_string(i)+".out";
-                m_outputPaths.push_back(pt);
-                m_fileHandles.push_back(shared_ptr<ofstream>(new ofstream(pt)));
+                string pt=to_string(m_jb.jobid())+"_"+to_string(i)+".out";
+                m_fileHandles[i]=pair(pt,shared_ptr<ofstream>(new ofstream(pt)));
             }
             mapper->map(stringToMap);
 
@@ -270,9 +256,8 @@ bool Worker::run() {
             std::sort(alphabeticalOrderKeys.begin(), alphabeticalOrderKeys.end());
 
 
-            string pt=m_jb.jobid()+".out";
-            m_outputPaths.push_back(pt);
-            m_fileHandles.push_back(shared_ptr<ofstream>(new ofstream(pt)));
+            string pt=m_jb.reduceroutputpath()+"/"+to_string(m_jb.jobid())+".out";
+            m_fileHandles[m_jb.jobid()]=pair(pt,shared_ptr<ofstream>(new ofstream(pt)));
             for(auto& key: alphabeticalOrderKeys){
                 reducer->reduce(key,keyMultiValuePair[key]);
             }

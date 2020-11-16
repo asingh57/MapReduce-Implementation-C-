@@ -28,63 +28,6 @@
 
 namespace masterworker {
 
-class master final {
- public:
-  static constexpr char const* service_full_name() {
-    return "masterworker.master";
-  }
-  class StubInterface {
-   public:
-    virtual ~StubInterface() {}
-    class experimental_async_interface {
-     public:
-      virtual ~experimental_async_interface() {}
-    };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
-  };
-  class Stub final : public StubInterface {
-   public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
-     public:
-     private:
-      friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
-      Stub* stub() { return stub_; }
-      Stub* stub_;
-    };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
-
-   private:
-    std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
-  };
-  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-
-  class Service : public ::grpc::Service {
-   public:
-    Service();
-    virtual ~Service();
-  };
-  typedef Service AsyncService;
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef Service CallbackService;
-  #endif
-
-  typedef Service ExperimentalCallbackService;
-  typedef Service StreamedUnaryService;
-  typedef Service SplitStreamedService;
-  typedef Service StreamedService;
-};
-
 // utility for master to query its workers
 class worker final {
  public:
