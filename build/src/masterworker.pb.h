@@ -683,7 +683,7 @@ class mapFilePortion PROTOBUF_FINAL :
   enum : int {
     kMapFilePathFieldNumber = 1,
     kStartIdxMapperFieldNumber = 2,
-    kEndIdxMapperFieldNumber = 3,
+    kSizeFieldNumber = 3,
   };
   // string mapFilePath = 1;
   void clear_mapfilepath();
@@ -710,13 +710,13 @@ class mapFilePortion PROTOBUF_FINAL :
   void _internal_set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // int32 endIdxMapper = 3;
-  void clear_endidxmapper();
-  ::PROTOBUF_NAMESPACE_ID::int32 endidxmapper() const;
-  void set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
+  // int32 size = 3;
+  void clear_size();
+  ::PROTOBUF_NAMESPACE_ID::int32 size() const;
+  void set_size(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_endidxmapper() const;
-  void _internal_set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_size() const;
+  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:masterworker.mapFilePortion)
@@ -728,7 +728,7 @@ class mapFilePortion PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mapfilepath_;
   ::PROTOBUF_NAMESPACE_ID::int32 startidxmapper_;
-  ::PROTOBUF_NAMESPACE_ID::int32 endidxmapper_;
+  ::PROTOBUF_NAMESPACE_ID::int32 size_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_masterworker_2eproto;
 };
@@ -1603,24 +1603,24 @@ inline void mapFilePortion::set_startidxmapper(::PROTOBUF_NAMESPACE_ID::int32 va
   // @@protoc_insertion_point(field_set:masterworker.mapFilePortion.startIdxMapper)
 }
 
-// int32 endIdxMapper = 3;
-inline void mapFilePortion::clear_endidxmapper() {
-  endidxmapper_ = 0;
+// int32 size = 3;
+inline void mapFilePortion::clear_size() {
+  size_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::_internal_endidxmapper() const {
-  return endidxmapper_;
+inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::_internal_size() const {
+  return size_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::endidxmapper() const {
-  // @@protoc_insertion_point(field_get:masterworker.mapFilePortion.endIdxMapper)
-  return _internal_endidxmapper();
+inline ::PROTOBUF_NAMESPACE_ID::int32 mapFilePortion::size() const {
+  // @@protoc_insertion_point(field_get:masterworker.mapFilePortion.size)
+  return _internal_size();
 }
-inline void mapFilePortion::_internal_set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void mapFilePortion::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
-  endidxmapper_ = value;
+  size_ = value;
 }
-inline void mapFilePortion::set_endidxmapper(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_endidxmapper(value);
-  // @@protoc_insertion_point(field_set:masterworker.mapFilePortion.endIdxMapper)
+inline void mapFilePortion::set_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:masterworker.mapFilePortion.size)
 }
 
 // -------------------------------------------------------------------

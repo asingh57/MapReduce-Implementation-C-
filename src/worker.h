@@ -217,7 +217,7 @@ bool Worker::run() {
                 strm.seekg (mapPortion.startidxmapper());
                 //strm.read (buffer, y);
                 std::copy_n(std::istreambuf_iterator<char>(strm.rdbuf()),
-                            mapPortion.endidxmapper()+1-mapPortion.startidxmapper(), std::back_inserter(stringToMap));
+                            mapPortion.size(), std::back_inserter(stringToMap));
                 strm.close();
             }
             for(int i=0;i<m_jb.mapfilesplitcount();i++){
