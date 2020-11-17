@@ -100,6 +100,18 @@ class Master {
 
         //TODO: create reducer jobs
         void distributeDataToReducers(){
+            //read results of mapper jobs and create reducer jobs
+
+            for(auto&taskResult :m_completedTasks){
+                for(int i=0;i<taskResult->keysandvalues_size();i++){
+                    int idx= stoi(taskResult->keysandvalues(i).key());
+                    m_reducerJobs[idx]->add_filespathlistreducer(taskResult->keysandvalues(i).value());
+                }
+
+            }
+
+
+
             //queue data
             m_jobQueueLock.lock();
             for(auto &jb : m_reducerJobs){
