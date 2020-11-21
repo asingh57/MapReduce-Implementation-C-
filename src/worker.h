@@ -15,6 +15,7 @@
 #include "masterworker.pb.h"
 #include "mr_task_factory.h"
 #include "mr_tasks.h"
+#include <algorithm>
 #include <functional>
 
 using namespace std;
@@ -62,14 +63,32 @@ class Worker {
 
         void doWrites(){
             //empty out the queue
-            int sz=m_queue.size();
             int numFilesOpen=m_fileHandles.size();
 
-            for(int i=0;i<sz;i++){
-                keyValuePair x= m_queue.back();
-                *(m_fileHandles[m_hasher(x.key())%numFilesOpen].second) << x.key()<<" "<< x.value()<<endl;
-                m_queue.pop();
+            if(m_jb.jobtype()==workerJob::MAPPER){
+                while(m_queue.size()){
+                    keyValuePair x= m_queue.front();
+                    cout <<"writing key "<< x.key() << endl;
+                    cout <<"num handles "<< m_fileHandles.size() << endl;
+                    cout <<"num filesopen "<< numFilesOpen << endl;
+                    cout << "hash val" << m_hasher(x.key())%numFilesOpen << endl;
+                    cout << "file name" <<m_fileHandles[m_hasher(x.key())%numFilesOpen].first << endl;
+                    *(m_fileHandles[m_hasher(x.key())%numFilesOpen].second) << x.key()<<" "<< x.value()<<endl;
+                    m_queue.pop();
+                }
             }
+            else{
+                while(m_queue.size()){
+                    keyValuePair x= m_queue.front();
+                    cout <<"writing key "<< x.key() << endl;
+                    cout <<"num handles "<< m_fileHandles.size() << endl;
+                    cout <<"num filesopen "<< numFilesOpen << endl;
+                    cout << "file name" <<m_fileHandles[m_jb.jobid()].first << endl;
+                    *(m_fileHandles[m_jb.jobid()].second) << x.key()<<" "<< x.value()<<endl;
+                    m_queue.pop();
+                }
+            }
+            cout << "writes batch done" << endl;
         }
 
         //handle emitted value
@@ -77,6 +96,8 @@ class Worker {
             keyValuePair kvp;
             kvp.set_key(key);
             kvp.set_value(val);
+            cout <<"key" <<key << endl;
+            cout <<"val" <<val << endl;
             m_queue.push(kvp);
             if(m_jb.jobtype()==workerJob::MAPPER){
                 //do occasional writes to disk
@@ -88,6 +109,8 @@ class Worker {
 
         //finish worker job
         void finishWorkerJob(){
+
+            cout <<"finishing the job writes"<< endl;
             doWrites();
 
             m_results= jobResultsInfo();
@@ -97,7 +120,9 @@ class Worker {
                 kp->set_value(out.second.first);
                 out.second.second->close();
             }
+            m_fileHandles.clear();
 
+            cout <<"setting job status"<< endl;
             m_workerStatus.set_status(workerStatus::JOB_DONE);
 
 
@@ -122,6 +147,8 @@ public:
        m_wp->m_jb =workerJob(*request);
        m_wp->m_workerStatus.set_status(workerStatus::BUSY);
        reply->set_status(m_wp->m_workerStatus.status());
+
+       cout <<"worker received job" <<endl;
        return Status::OK;
      }
 
@@ -181,17 +208,24 @@ extern std::shared_ptr<BaseReducer> get_reducer_from_task_factory(const std::str
     so you can manipulate them however you want when running map/reduce tasks*/
 bool Worker::run() {
     while(true){
-        m_queue.empty();
-        m_fileHandles.empty();
+        m_queue= queue<keyValuePair>();
+        m_fileHandles.clear();
     //poll for a job
         if(m_workerStatus.status()!=workerStatus::BUSY){
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+            cout <<"no job at the moment, sleeping"<< endl;
             continue;
         }
+
+
+
+        cout <<"job received"<< endl;
 
     //do job
         if(m_jb.jobtype()==workerJob::MAPPER){
 
+            cout <<"received mapper job"<< endl;
 
             std::shared_ptr<BaseMapper> mapper = get_mapper_from_task_factory(m_jb.userid());
             //set the lambda to emit data
@@ -206,12 +240,20 @@ bool Worker::run() {
                 std::copy_n(std::istreambuf_iterator<char>(strm.rdbuf()),
                             mapPortion.size(), std::back_inserter(stringToMap));
                 strm.close();
+                stringToMap+=" ";//add whitespace
             }
             for(int i=0;i<m_jb.mapfilesplitcount();i++){
                 string pt=to_string(m_jb.jobid())+"_"+to_string(i)+".out";
                 m_fileHandles[i]=pair(pt,shared_ptr<ofstream>(new ofstream(pt)));
             }
+
+            std::replace( stringToMap.begin(), stringToMap.end(), '\n', ' ');
+
+            //cout <<stringToMap<<endl;
             mapper->map(stringToMap);
+
+
+            cout <<"mapping done"<< endl;
 
         }
         else{//REDUCER
@@ -219,6 +261,7 @@ bool Worker::run() {
             reducer->impl_->m_workerEmit=m_shared_emitter;
 
 
+            cout <<"reducer job received"<< endl;
 
             map<string,vector<string>> keyMultiValuePair;
             string readData="";
@@ -247,6 +290,7 @@ bool Worker::run() {
                                 keyMultiValuePair[key]=vector<string>(1);
                             }
                             keyMultiValuePair[key].push_back(value);
+                            cout <<"adding kp" <<key <<"" << value << endl;
                         }
                     }
                 }
@@ -262,7 +306,11 @@ bool Worker::run() {
                 reducer->reduce(key,keyMultiValuePair[key]);
             }
 
+
+            cout <<"reducing done"<< endl;
+
         }
+
         finishWorkerJob();
 
 
