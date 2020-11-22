@@ -37,13 +37,14 @@ inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fi
     //now make the shards
 
 
-
+    cout <<"now sharding files" <<endl;
     while(fileInfos.size()){
         //cout <<fileInfos.size() <<endl;
         FileShard shard;
         long remainingShardSize=mr_spec.mapSizeBytes;
         while(remainingShardSize){
             FileInfo *currInfo=&fileInfos.back();
+
             FileInfo subShard;
             //cout << currInfo->filename <<" "<< currInfo->startIdx<<" "<< currInfo->size <<endl;
             if(currInfo->size==0){
@@ -57,11 +58,30 @@ inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fi
             subShard.filename=currInfo->filename;
             subShard.startIdx=currInfo->startIdx;
             subShard.size=min(currInfo->size,remainingShardSize);
-            remainingShardSize-=subShard.size;
+            {
+                cout <<"opening file" <<currInfo->filename << endl;
+                std::ifstream strm(currInfo->filename);
+                strm.seekg(subShard.startIdx+subShard.size);
+
+                char curr;
+                int additionalCount=0;
+                //make sure we don't cut off the word half way, wait till end of line
+                while(strm.get(curr) &&(curr!=' '&&curr!='\n')){
+                    additionalCount++;
+
+                    //cout <<curr << endl;
+                }
+                strm.close();
+                subShard.size+=additionalCount;
+
+            }
+            remainingShardSize=max(remainingShardSize-subShard.size,(long)0);
             currInfo->startIdx+=subShard.size;
-            currInfo->size-=subShard.size;
+            currInfo->size=max(currInfo->size-subShard.size,(long)0);
+            //currInfo->size-=subShard.size;
 
             shard.fileData.push_back(subShard);
+
         }
         if(shard.fileData.size()){
             fileShards.push_back(shard);
