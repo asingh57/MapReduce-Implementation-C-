@@ -12,6 +12,8 @@
 #include <vector>
 #include <queue>
 #include <chrono>
+#include <stdio.h>
+
 using namespace std;
 using namespace grpc;
 using namespace masterworker;
@@ -383,10 +385,35 @@ bool Master::run() {
 
     //prepare if run gets called again
     m_jobQueueLock.lock();
+    cout <<"Cleaning the intermediate files"<< endl;
+    int fileCounter=0;
+    for(std::shared_ptr<jobResultsInfo> task: m_completedTasks){
+        if(fileCounter==m_mapperJobs.size()){
+            break;
+        }
+        fileCounter++;
+        cout <<"Cleaning up intermediate mapper files for mapper task "<< endl;
+        for(int i=0;i<task->keysandvalues_size();i++){
+            string path= task->keysandvalues(i).value();
+            if(remove(path.c_str())!= 0 ){
+                cout <<"failed to remove intermediate file " << path << endl;
+            }
+            else{
+                cout <<"removed intermediate file " << path << endl;
+
+            }
+        }
+    }
+
+
     m_unassignedJobs.clear();
     m_completedTasks.clear();
     m_mapperJobs.clear();
     m_reducerJobs.clear();
-    cout <<"mapreduce job done" <<endl;
+
+
+
+    cout <<"MAPREDUCE job done" <<endl;
+
 	return true;
 }
