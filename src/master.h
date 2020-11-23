@@ -139,12 +139,20 @@ class Master {
 		/* DON'T change this function's signature */
 		bool run();
 
+        ~Master(){//destructor
+            m_jobQueueLock.unlock();//unlock queue so background thread can continue execution
+            m_destroySignal=true;//signal to background thread to stop
+            m_backgroundThread.join();//job background thread
+        }
+
 
 	private:
 		/* NOW you can add below, data members and member functions as per the need of your implementation*/
 
         std::thread m_backgroundThread;
 
+        //signal join for background thread
+        bool m_destroySignal;
 
         //have 3 pools of workers: workers who are uninitialised, those that are busy with a task and those that are free
         vector<std::shared_ptr<WorkerInfo>> m_uninitialisedworkers;
@@ -183,6 +191,9 @@ class Master {
 
 
             while(true){
+                if(m_destroySignal){//if master is being destroyed, finish execution
+                    return;
+                }
                 cout << "checking free workers" << endl;
                 for(int i=0;i<m_freeworkers.size();i++){
                     //check if worker is alive, if not, remove from worker list
@@ -345,7 +356,8 @@ Master::Master(const MapReduceSpec& mr_spec, const std::vector<FileShard>& file_
     m_unassignedJobs(),
     m_jobQueueLock(),
     m_jobsInProgress(),
-    m_completedTasks()
+    m_completedTasks(),
+    m_destroySignal(false)
 {
 
     //create workers but dont activate them yet
