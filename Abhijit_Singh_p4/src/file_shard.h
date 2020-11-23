@@ -7,15 +7,13 @@
 /* CS6210_TASK: Create your own data structure here, where you can hold information about file splits,
      that your master would use for its own bookkeeping and to convey the tasks to the workers for mapping */
 
-struct FileInfo{//information about individual file
+struct FileInfo{
     string filename;
     long startIdx;
     long size;
 };
 struct FileShard {
-    //each shard can have more than one file
     std::vector<FileInfo> fileData;
-    //constructor
     FileShard(): fileData(){}
 };
 
@@ -24,7 +22,6 @@ struct FileShard {
 inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fileShards) {
     fileShards=std::vector<FileShard>();
 
-    //first read info of each file
     std::vector<FileInfo> fileInfos;
 
     for(auto& filename: mr_spec.inputFiles){
@@ -71,6 +68,8 @@ inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fi
                 //make sure we don't cut off the word half way, wait till end of line
                 while(strm.get(curr) &&(curr!=' '&&curr!='\n')){
                     additionalCount++;
+
+                    //cout <<curr << endl;
                 }
                 strm.close();
                 subShard.size+=additionalCount;
@@ -91,16 +90,43 @@ inline bool shard_files(const MapReduceSpec& mr_spec, std::vector<FileShard>& fi
 
 
 
+    /*for(auto& filename: mr_spec.inputFiles){
+       ifstream in_file(filename, ios::binary);
+       in_file.seekg(0, ios::end);
+       long file_size = in_file.tellg();
+       int currIdx=0;
+       while(file_size){
+            FileShard aShard();
+            FileInfo fileData;
+            fileData.filename=filename;
+            fileData.startIdx=currIdx;
+            
+            if(mr_spec.mapSizeBytes>file_size){
+                aShard.endIdx=currIdx+file_size-1;
+                fileShards.push_back(aShard);
+                break;
+            }
+            aShard.endIdx=currIdx+mr_spec.mapSizeBytes-1;
+            fileShards.push_back(aShard);
+            
+            currIdx+=mr_spec.mapSizeBytes;
+            file_size-=mr_spec.mapSizeBytes;
+        }
 
-    cout <<"num shards: "<<fileShards.size() <<endl;
+    }*/
+
+
+
+
+    cout <<"num shards"<<fileShards.size() <<endl;
     for(auto & sd: fileShards){
-        cout <<"\nshard details" <<endl;
+        cout <<"\nshard" <<endl;
         for(auto & sub : sd.fileData){
             cout << "filename: " << sub.filename << " idx:" << sub.startIdx << " size:" <<sub.size << endl;
         }
     }
 
-    cout <<"done sharding"<<endl;
+    cout <<"done"<<endl;
 
 	return true;
 }

@@ -30,8 +30,6 @@ inline bool read_mr_spec_from_config_file(const std::string& config_filename, Ma
     mr_spec =MapReduceSpec();
     ifstream readfile(config_filename);
     std::string line;
-
-    //parse config
     while (getline (readfile, line)) {
         //read config
         if(!line.size()){

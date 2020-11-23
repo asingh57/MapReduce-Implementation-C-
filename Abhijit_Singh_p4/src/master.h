@@ -18,35 +18,25 @@ using namespace std;
 using namespace grpc;
 using namespace masterworker;
 
-//forward declaration of service
 class MasterService;
 
-//struct to be used for worker pool
 struct WorkerInfo{
-    //internal job counter
     static long jobIDCounter;
-    string ipAddress;//ip of worker
-    //assigned job of the worker
+    string ipAddress;
     std::shared_ptr<workerJob> assignedJob;
-    //results from the worker
     std::shared_ptr<jobResultsInfo> jobResults;
-    //grpc stub for worker
     std::shared_ptr<Channel> channel;
     std::shared_ptr<worker::Stub> stub;
-    //status of the worker
     workerStatus::Status status;
 
-    bool createConnection(){//create grpc connection
+    bool createConnection(){
         channel=grpc::CreateChannel(ipAddress, grpc::InsecureChannelCredentials());
         stub=shared_ptr(worker::NewStub(channel));
         return true;
 
     }
-
-    //worker health query. Returns false if worker doesnt respond or connection breaks
     bool getStatus(){
         ClientContext context;
-        //set deadline on worker
         std::chrono::time_point deadline = std::chrono::system_clock::now() +
             std::chrono::milliseconds(300);
         context.set_deadline(deadline);//if we don't get health status in 300 ms, we consider it dead
@@ -64,13 +54,11 @@ struct WorkerInfo{
 
         status= workerStatus::Status(statquery.status());
 
-        cout << "received health status from "<< ipAddress << endl;
+        cout << "received status from "<< ipAddress << endl;
         return true;
 
 
     }
-
-    //try to assign a job to worker
     bool assignJob(std::shared_ptr<workerJob> jb){
         assignedJob=jb;
         jb->set_jobid(jobIDCounter++);
@@ -82,9 +70,7 @@ struct WorkerInfo{
         Status querystatus = stub->setJob(&context, *assignedJob, &statquery);
 
 
-
         if (!querystatus.ok()) {
-            //worker died
             std::cout << ipAddress << querystatus.error_code() << ": " << querystatus.error_message()
                       << std::endl;
             return false;
@@ -98,8 +84,6 @@ struct WorkerInfo{
 
 
     }
-
-    //get results from worker
     bool getJobResults(){
         ClientContext context;
         std::chrono::time_point deadline = std::chrono::system_clock::now() +
@@ -107,7 +91,6 @@ struct WorkerInfo{
         context.set_deadline(deadline);//if we don't get results within timeout, we consider it dead
 
 
-        //get results from worker using stub
         jobResults= std::shared_ptr<jobResultsInfo>(new jobResultsInfo);
         Status querystatus = stub->jobDoneResults(&context, *assignedJob, jobResults.get());
 
@@ -139,26 +122,25 @@ class Master {
 		/* DON'T change this function's signature */
 		bool run();
 
-
+        ~Master(){
+            m_backgroundThread.join();
+        }
 	private:
 		/* NOW you can add below, data members and member functions as per the need of your implementation*/
 
         std::thread m_backgroundThread;
 
 
-        //have 3 pools of workers: workers who are uninitialised, those that are busy with a task and those that are free
         vector<std::shared_ptr<WorkerInfo>> m_uninitialisedworkers;
         vector<std::shared_ptr<WorkerInfo>> m_busyworkers;
         vector<std::shared_ptr<WorkerInfo>> m_freeworkers;
 
-        //lists of jobs. assigner thread only lifts jobs from unassigned jobs and puts them in jobs in progress
         vector<std::shared_ptr<workerJob>> m_mapperJobs;
         vector<std::shared_ptr<workerJob>> m_reducerJobs;
         vector<std::shared_ptr<workerJob>> m_unassignedJobs;
         vector<std::shared_ptr<workerJob>> m_jobsInProgress;
         mutex m_jobQueueLock; //protects job list
 
-        //vector of job results
         vector<std::shared_ptr<jobResultsInfo>> m_completedTasks;
         //after map is done, we should have m completed tasks
         //after reduce, goal is to reach m+n completed tasks
@@ -174,7 +156,6 @@ class Master {
             //thread is down, remove from worker queue
 
 
-            //initialsise workers first
             for(auto& worker: m_uninitialisedworkers){
                 if(worker->createConnection()){
                     m_freeworkers.push_back(worker);
@@ -190,7 +171,7 @@ class Master {
                         m_freeworkers.erase(m_freeworkers.begin() + i);
                         i--;
                     }
-                    //assign job to worker from unassigned jobs list
+                    //assign job to worker
                     else{
                         m_jobQueueLock.lock();
                         if(m_unassignedJobs.size()){
@@ -217,8 +198,6 @@ class Master {
                 //sleep to avoid too much connection traffic
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-
-                //check if workers are freed
                 for(int i=0;i<m_busyworkers.size();i++){
                     cout << "checking busy workers" << endl;
                     //check worker status,
@@ -271,7 +250,7 @@ class Master {
             m_jobQueueLock.unlock();
 
 
-            //check if mapper jobs are done, else busy wait
+            //check if mapper jobs are done
             bool done=false;
             do{
                 m_jobQueueLock.lock();
@@ -280,7 +259,6 @@ class Master {
                 m_jobQueueLock.unlock();
 
                 if(!done){
-                    //sleep if work isnt done yet
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
                 else{
@@ -297,7 +275,6 @@ class Master {
             //read results of mapper jobs and create reducer jobs
 
             m_jobQueueLock.lock();
-            //create reducer jobs and add them to the unassigned queue
             for(auto&taskResult :m_completedTasks){
                 for(int i=0;i<taskResult->keysandvalues_size();i++){
                     int idx= stoi(taskResult->keysandvalues(i).key());
@@ -306,7 +283,7 @@ class Master {
             }
             m_jobQueueLock.unlock();
 
-            //queue these jobs
+            //queue data
             m_jobQueueLock.lock();
             for(auto &jb : m_reducerJobs){
                 m_unassignedJobs.push_back(jb);
@@ -348,7 +325,7 @@ Master::Master(const MapReduceSpec& mr_spec, const std::vector<FileShard>& file_
     m_completedTasks()
 {
 
-    //create workers but dont activate them yet
+    //create workerInfos
     for(auto& ip: mr_spec.workerIPaddresses){
         shared_ptr<WorkerInfo> worker(new WorkerInfo);
         worker->ipAddress=ip;
@@ -361,9 +338,7 @@ Master::Master(const MapReduceSpec& mr_spec, const std::vector<FileShard>& file_
     for(auto& shard:file_shards){
         shared_ptr<workerJob> mapjob(new workerJob);
         mapjob->set_jobtype(workerJob::MAPPER);
-        //set userid to be used for factory
         mapjob->set_userid(mr_spec.userID);
-        //assign shards to these jobs
         for(auto& subshard:shard.fileData){
             mapFilePortion* fileportion=mapjob->add_fileportions();
             fileportion->set_mapfilepath(subshard.filename);
