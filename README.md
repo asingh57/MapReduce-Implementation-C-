@@ -3,6 +3,8 @@ MapReduce Infrastructure
 
 ## Project Instructions
 
+I implemented fault tolerant map-reduce based on the original google paper for my graduate Advanced OS class
+
 [Project Description](description.md)
 
 [Code walk through](structure.md)
